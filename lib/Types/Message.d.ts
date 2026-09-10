@@ -1,0 +1,11 @@
+export { proto as WAProto };
+export const AssociationType: any;
+export const ButtonHeaderType: any;
+export const ButtonType: any;
+export const CarouselCardType: any;
+export const ListType: any;
+export const ProtocolType: any;
+export const WAMessageStubType: any;
+export const WAMessageStatus: any;
+export const WAMessageAddressingMode: any;
+import { proto } from '../../WAProto/index.js';

@@ -1,0 +1,172 @@
+{
+  "name": "@vanzxy/baileys",
+  "version": "2.0.3",
+  "description": "Enhanced Baileys fork by Vanzxy — based on @itsliaaa/baileys + @whiskeysockets/baileys with fixes for audio group status and clean media without newsletter button.",
+  "type": "module",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "preinstall": "node ./engine-requirements.js",
+    "postinstall": "node ./postinstall-banner.js",
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanzxysenpai/vanzxybaileys.git"
+  },
+  "files": [
+    "lib/**/*",
+    "WAProto/**/*",
+    "engine-requirements.js",
+    "postinstall-banner.js",
+    "NOTICE.md"
+  ],
+  "keywords": [
+    "vanzxy",
+    "vanzxybaileys",
+    "vanzxy-baileys",
+    "vanzxy-whatsapp",
+    "vanzxy-baileys-md",
+    "baileys-fork-vanzxy",
+    "baileys",
+    "baileys-md",
+    "baileys-multi-device",
+    "baileys-multidevice",
+    "baileys-whatsapp",
+    "baileys-whatsapp-api",
+    "baileys-whatsapp-bot",
+    "baileys-bot",
+    "baileys-api",
+    "baileys-library",
+    "baileys-node",
+    "baileys-nodejs",
+    "baileys-javascript",
+    "baileys-js",
+    "baileys-esm",
+    "baileys-fork",
+    "whatsapp-baileys",
+    "whatsapp-bot-baileys",
+    "whatsapp-api-baileys",
+    "whatsapp-web-baileys",
+    "whatsapp-multi-device",
+    "whatsapp-automation",
+    "whatsapp-bot",
+    "whatsapp-api",
+    "whatsapp-web",
+    "multi-device",
+    "interactive-messages"
+  ],
+  "homepage": "https://github.com/vanzxysenpai/vanzxybaileys#readme",
+  "author": "Vanzxy",
+  "license": "MIT",
+  "dependencies": {
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@cacheable/node-cache": "^1.4.0",
+    "@hapi/boom": "^9.1.3",
+    "async-mutex": "^0.5.0",
+    "fflate": "^0.8.2",
+    "jimp": "^1.6.1",
+    "libsignal": "^6.0.0",
+    "long": "^5.2.3",
+    "lru-cache": "^11.2.6",
+    "music-metadata": "^11.12.3",
+    "p-queue": "^9.1.0",
+    "pino": "^9.6.0",
+    "protobufjs": "^7.5.6",
+    "ws": "^8.19.0"
+  },
+  "peerDependencies": {
+    "@napi-rs/image": "~1.12.0",
+    "@roamhq/wrtc": "*",
+    "audio-decode": "^2.2.3",
+    "better-sqlite3": "^11.0.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "ioredis": "^5.4.1",
+    "link-preview-js": "^3.0.0",
+    "mongodb": "^6.10.0",
+    "mysql2": "^3.11.0",
+    "node-webpmux": "^3.2.0",
+    "pg": "^8.13.0",
+    "sharp": "*"
+  },
+  "peerDependenciesMeta": {
+    "@napi-rs/image": {
+      "optional": true
+    },
+    "@roamhq/wrtc": {
+      "optional": true
+    },
+    "audio-decode": {
+      "optional": true
+    },
+    "better-sqlite3": {
+      "optional": true
+    },
+    "fluent-ffmpeg": {
+      "optional": true
+    },
+    "ioredis": {
+      "optional": true
+    },
+    "link-preview-js": {
+      "optional": true
+    },
+    "mongodb": {
+      "optional": true
+    },
+    "mysql2": {
+      "optional": true
+    },
+    "pg": {
+      "optional": true
+    },
+    "node-webpmux": {
+      "optional": true
+    }
+  },
+  "resolutions": {
+    "ajv@npm:^6.12.4": "^6.14.0",
+    "basic-ftp": "^5.2.4",
+    "brace-expansion@npm:^1.1.7": "^1.1.13",
+    "brace-expansion@npm:^2.0.1": "^2.0.3",
+    "flatted": "^3.4.2",
+    "glob@npm:^10.2.2": "^10.5.0",
+    "glob@npm:^10.3.10": "^10.5.0",
+    "glob@npm:^10.5.0": "^10.5.0",
+    "handlebars": "^4.7.9",
+    "ip-address": "^10.1.1",
+    "js-yaml@npm:^3.13.1": "^3.14.2",
+    "js-yaml@npm:^4.1.0": "^4.1.1",
+    "markdown-it": "^14.1.1",
+    "minimatch@npm:^3.0.4": "^3.1.5",
+    "minimatch@npm:^3.1.2": "^3.1.5",
+    "minimatch@npm:^5.0.1": "^5.1.8",
+    "minimatch@npm:^9.0.4": "^9.0.9",
+    "minimatch@npm:^9.0.5": "^9.0.9",
+    "picomatch@npm:^2.0.4": "^2.3.2",
+    "picomatch@npm:^2.3.1": "^2.3.2",
+    "picomatch@npm:^4.0.0": "^4.0.4",
+    "picomatch@npm:^4.0.2": "^4.0.4",
+    "socks": "^2.8.8",
+    "tar": "^7.5.11",
+    "tmp": "^0.2.5",
+    "underscore": "^1.13.8",
+    "yaml@npm:^2.6.1": "^2.8.4"
+  },
+  "packageManager": "yarn@4.9.2",
+  "optionalDependencies": {
+    "whatsapp-rust-bridge": "0.5.5"
+  }
+}
