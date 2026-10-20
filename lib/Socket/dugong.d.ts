@@ -4,9 +4,9 @@ export class Dugong {
     waUploadToServer: any;
     config: any;
     sock: any;
-    detectType(content: any): "PAYMENT" | "PRODUCT" | "GROUP_INVITE" | "INTERACTIVE_BUTTONS" | "CAROUSEL" | "INTERACTIVE" | "ALBUM" | "EVENT" | "POLL_RESULT" | "GROUP_STORY" | null;
+    detectType(content: any): "PAYMENT" | "PRODUCT" | "GROUP_INVITE" | "INTERACTIVE_BUTTONS" | "CAROUSEL" | "INTERACTIVE" | "ALBUM" | "EVENT" | "POLL_RESULT" | "GROUP_STORY";
     handlePayment(content: any, quoted: any): Promise<{
-        requestPaymentMessage: any;
+        requestPaymentMessage: proto.Message.RequestPaymentMessage;
     }>;
     handleProduct(content: any, _jid: any, _quoted: any): Promise<{
         viewOnceMessage: {
@@ -108,10 +108,11 @@ export class Dugong {
             };
         };
     }>;
-    handleAlbum(content: any, jid: any, quoted: any): Promise<any>;
-    handleEvent(content: any, jid: any, quoted: any): Promise<any>;
-    handlePollResult(content: any, jid: any, quoted: any): Promise<any>;
-    handleGroupInvite(content: any, jid: any, quoted: any): Promise<any>;
+    handleAlbum(content: any, jid: any, quoted: any): Promise<proto.WebMessageInfo>;
+    handleEvent(content: any, jid: any, quoted: any): Promise<proto.WebMessageInfo>;
+    handlePollResult(content: any, jid: any, quoted: any): Promise<proto.WebMessageInfo>;
+    handleGroupInvite(content: any, jid: any, quoted: any): Promise<proto.WebMessageInfo>;
     handleGroupStory(content: any, jid: any, _quoted: any, options?: {}): Promise<any>;
-    sendStatusWhatsApp(content: any, jids?: any[]): Promise<any>;
+    sendStatusWhatsApp(content: any, jids?: any[]): Promise<proto.WebMessageInfo>;
 }
+import { proto } from "../../WAProto/index.js";

@@ -13,4 +13,12 @@ export class USyncUser {
     type: any;
     withPersonaId(personaId: any): this;
     personaId: any;
+    withPictureId(pictureId: any): this;
+    pictureId: any;
+    withVerifiedNameSerial(serial: any): this;
+    verifiedNameSerial: any;
+    withBusinessProfileTag(tag: any): this;
+    businessProfileTag: any;
+    withSidelistDelete(del?: boolean): this;
+    sidelistDelete: boolean;
 }

@@ -8,6 +8,6 @@ export function handleIdentityChange(node: any, ctx: any): Promise<{
     error?: undefined;
 } | {
     action: string;
-    error: unknown;
+    error: any;
     device?: undefined;
 }>;

@@ -34,12 +34,12 @@ export function makeSocket(config: any): {
     end: (error: any) => Promise<void>;
     registerSocketEndHandler: (handler: any) => void;
     onUnexpectedError: (err: any, msg: any) => void;
-    uploadPreKeys: (count?: number) => Promise<void>;
+    uploadPreKeys: (count?: 5) => Promise<void>;
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     digestKeyBundle: () => Promise<void>;
     rotateSignedPreKey: () => Promise<void>;
     requestPairingCode: (phoneNumber: any, customPairingCode: any) => Promise<any>;
-    updateServerTimeOffset: ({ attrs }: {
+    updateServerTimeOffset: (opts1: { [key: string]: any; 
         attrs: any;
     }) => void;
     sendUnifiedSession: () => Promise<void>;
@@ -51,7 +51,7 @@ export function makeSocket(config: any): {
     onWhatsApp: (...phoneNumber: any[]) => Promise<any>;
     fetchAccountReachoutTimelock: () => Promise<{
         isActive: boolean;
-        timeEnforcementEnds: Date | undefined;
+        timeEnforcementEnds: Date;
         enforcementType: any;
     }>;
     fetchNewChatMessageCap: () => Promise<any>;

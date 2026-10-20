@@ -12,13 +12,13 @@ export function shouldSendNewTcToken(senderTimestamp: any): boolean;
 export function resolveTcTokenJid(jid: any, getLIDForPN: any): Promise<any>;
 /** Resolve target JID for issuing privacy token based on AB prop 14303 */
 export function resolveIssuanceJid(jid: any, issueToLid: any, getLIDForPN: any, getPNForLID: any): Promise<any>;
-export function buildTcTokenFromJid({ authState, jid, baseContent, getLIDForPN }: {
+export function buildTcTokenFromJid(opts1: { [key: string]: any; 
     authState: any;
     jid: any;
-    baseContent?: never[] | undefined;
+    baseContent?: any[];
     getLIDForPN: any;
-}): Promise<any[] | undefined>;
-export function storeTcTokensFromIqResult({ result, fallbackJid, keys, getLIDForPN, onNewJidStored }: {
+}): Promise<any[]>;
+export function storeTcTokensFromIqResult(opts2: { [key: string]: any; 
     result: any;
     fallbackJid: any;
     keys: any;

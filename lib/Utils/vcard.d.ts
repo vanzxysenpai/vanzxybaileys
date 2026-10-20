@@ -1,58 +1,40 @@
-export interface ContactPhone {
-    number: string;
-    type?: string;
-    label?: string;
-}
-export interface ContactEmail {
-    email: string;
-    type?: string;
-}
-export interface ContactUrl {
-    url: string;
-    type?: string;
-}
-export interface ContactAddress {
-    street?: string;
-    city?: string;
-    state?: string;
-    postalCode?: string;
-    country?: string;
-    type?: string;
-}
-export interface ContactData {
-    fullName: string;
-    displayName?: string;
-    organization?: string;
-    title?: string;
-    phones?: ContactPhone[];
-    emails?: ContactEmail[];
-    urls?: ContactUrl[];
-    addresses?: ContactAddress[];
-    birthday?: string;
-    note?: string;
-}
-export declare const escapeVCard: (s: string) => string;
-export declare const formatPhone: (p: string) => string;
-export declare const generateVCard: (c: ContactData) => string;
-export declare const generateVCards: (contacts: ContactData[]) => string;
-export declare const parseVCard: (vcard: string) => Partial<ContactData>;
-export declare const createContactCard: (contact: ContactData) => {
+export function escapeVCard(s: any): any;
+export function unescapeVCard(s: any): any;
+export function formatPhone(p: any): any;
+export function generateVCard(c: any): string;
+export function generateVCards(contacts: any): any;
+export function parseVCard(vcard: any): {
+    fullName: any;
+    organization: any;
+    title: any;
+    phones: any;
+    emails: any;
+    birthday: any;
+    note: any;
+};
+export function createContactCard(contact: any): {
     contacts: {
-        displayName: string;
+        displayName: any;
         contacts: {
             vcard: string;
         }[];
     };
 };
-export declare const createContactCards: (contacts: ContactData[]) => {
+export function createContactCards(contacts: any): {
     contacts: {
-        displayName: string;
-        contacts: {
-            vcard: string;
-        }[];
+        displayName: any;
+        contacts: any;
     };
 };
-export declare const quickContact: (name: string, phone: string, options?: {
-    organization?: string;
-    email?: string;
-}) => ContactData;
+export function quickContact(name: any, phone: any, options: any): {
+    fullName: any;
+    phones: {
+        number: any;
+        type: string;
+    }[];
+    organization: any;
+    emails: {
+        email: any;
+        type: string;
+    }[];
+};

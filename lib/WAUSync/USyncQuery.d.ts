@@ -7,9 +7,9 @@ export class USyncQuery {
     withContext(context: any): this;
     withUser(user: any): this;
     parseUSyncQueryResult(result: any): {
-        list: never[];
-        sideList: never[];
-    } | undefined;
+        list: any[];
+        sideList: any[];
+    };
     withDeviceProtocol(): this;
     withContactProtocol(): this;
     withStatusProtocol(): this;
@@ -17,4 +17,9 @@ export class USyncQuery {
     withBotProfileProtocol(): this;
     withLIDProtocol(): this;
     withUsernameProtocol(): this;
+    withBusinessProtocol(profileVersion: any): this;
+    withPictureProtocol(type: any): this;
+    withTextStatusProtocol(): this;
+    withSidelistProtocol(useLidAddressing: any): this;
+    withFeatureProtocol(features: any): this;
 }

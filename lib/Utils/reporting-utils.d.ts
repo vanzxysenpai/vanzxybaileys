@@ -9,4 +9,4 @@ export function getMessageReportingToken(msgProtobuf: any, message: any, key: an
         };
         content: any;
     }[];
-} | null>;
+}>;

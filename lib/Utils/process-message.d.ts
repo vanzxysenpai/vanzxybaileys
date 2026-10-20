@@ -4,30 +4,50 @@
  * @param ctx additional info about the poll required for decryption
  * @returns list of SHA256 options
  */
-export function decryptPollVote({ encPayload, encIv }: {
+export function decryptPollVote(opts6: { [key: string]: any; 
     encPayload: any;
     encIv: any;
-}, { pollCreatorJid, pollMsgId, pollEncKey, voterJid }: {
+}, opts1: { [key: string]: any; 
     pollCreatorJid: any;
     pollMsgId: any;
     pollEncKey: any;
     voterJid: any;
-}): any;
+}): proto.Message.PollVoteMessage;
 /**
  * Decrypt an event response
  * @param response encrypted event response
  * @param ctx additional info about the event required for decryption
  * @returns event response message
  */
-export function decryptEventResponse({ encPayload, encIv }: {
+export function decryptEventResponse(opts7: { [key: string]: any; 
     encPayload: any;
     encIv: any;
-}, { eventCreatorJid, eventMsgId, eventEncKey, responderJid }: {
+}, opts2: { [key: string]: any; 
     eventCreatorJid: any;
     eventMsgId: any;
     eventEncKey: any;
     responderJid: any;
-}): any;
+}): proto.Message.EventResponseMessage;
+/**
+ * Vanz@Add (v2.1.5) --- decrypt an `encReactionMessage` (encrypted reaction).
+ *
+ * Same key-derivation family as Poll Vote / Event Response, use-case string "Enc Reaction" (the constant whatsmeow
+ * uses for EncSecretReaction). EXPERIMENTAL: derived from that sibling scheme, not yet validated against a captured
+ * encrypted reaction from a live account -- a wrong constant just makes this throw (processMessage catches it and
+ * emits `messages.reaction-encrypted` instead).
+ *   info = targetMsgId || targetSenderJid || reactorJid || "Enc Reaction" || 0x01 ; key = HMAC chain over messageSecret
+ *   aad  = targetMsgId \0 reactorJid
+ * @returns {proto.Message.ReactionMessage}
+ */
+export function decryptEncReaction(opts8: { [key: string]: any; 
+    encPayload: any;
+    encIv: any;
+}, opts3: { [key: string]: any; 
+    targetSenderJid: any;
+    targetMsgId: any;
+    targetEncKey: any;
+    reactorJid: any;
+}): proto.Message.ReactionMessage;
 /**
  * Decrypt a `secretEncryptedMessage` carrying a `MESSAGE_EDIT` payload.
  *
@@ -51,25 +71,26 @@ export function decryptEventResponse({ encPayload, encIv }: {
  * @returns decoded outer `Message` whose `protocolMessage.editedMessage`
  *   carries the new content (extendedTextMessage / conversation / etc.)
  */
-export function decryptMessageEdit({ encPayload, encIv }: {
+export function decryptMessageEdit(opts9: { [key: string]: any; 
     encPayload: any;
     encIv: any;
-}, { originalSenderJid, originalMsgId, editEncKey, editorJid }: {
+}, opts4: { [key: string]: any; 
     originalSenderJid: any;
     originalMsgId: any;
     editEncKey: any;
     editorJid: any;
-}): any;
+}): proto.Message;
 export function cleanMessage(message: any, meId: any, meLid: any): void;
 export function isRealMessage(message: any): boolean;
 export function shouldIncrementChatUnread(message: any): boolean;
-export function getChatId({ remoteJid, participant, fromMe }: {
+export function getChatId(opts10: { [key: string]: any; 
     remoteJid: any;
     participant: any;
     fromMe: any;
 }): any;
 export default processMessage;
-declare function processMessage(message: any, { shouldProcessHistoryMsg, placeholderResendCache, ev, creds, signalRepository, keyStore, logger, options, getMessage }: {
+import { proto } from '../../WAProto/index.js';
+declare function processMessage(message: any, opts5: { [key: string]: any; 
     shouldProcessHistoryMsg: any;
     placeholderResendCache: any;
     ev: any;

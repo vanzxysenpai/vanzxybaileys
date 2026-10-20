@@ -1,15 +1,22 @@
+export { DEFAULT_WA_VERSION };
+export namespace COMPANION_DEVICE_VERSION {
+    let primary: number;
+    let secondary: number;
+    let tertiary: number;
+}
 export const UNAUTHORIZED_CODES: number[];
 export const BIZ_BOT_SUPPORT_PAYLOAD: "{\"version\":1,\"is_ai_message\":true,\"should_upload_client_logs\":false,\"should_show_system_message\":false,\"ticket_id\":\"7004947587700716\",\"citation_items\":[],\"ticket_locale\":\"us\"}";
 export const DEFAULT_ORIGIN: "https://web.whatsapp.com";
+/**
+ * Vanz@Port (2.0.3) --- idea from systemzero/baileys 1.1.4 (DEFAULT_MAX_MEDIA_UPLOAD_BYTES). Default cap for media fetched from a
+ * REMOTE URL when the caller passes no `maxContentLength`. 2 GiB = WhatsApp's own document ceiling, so no valid upload is refused;
+ * it only stops a runaway/hostile URL from streaming endlessly into the temp dir. Pass `maxContentLength: 0` to disable.
+ */
+export const DEFAULT_MAX_REMOTE_MEDIA_BYTES: number;
 export const CALL_VIDEO_PREFIX: "https://call.whatsapp.com/video/";
 export const CALL_AUDIO_PREFIX: "https://call.whatsapp.com/voice/";
 export const DONATE_URL: "";
 export const LIBRARY_NAME: "vanzxy/baileys";
-export const COMPANION_DEVICE_VERSION: {
-    primary: number;
-    secondary: number;
-    tertiary: number;
-};
 export const DEF_CALLBACK_PREFIX: "CB:";
 export const DEF_TAG_PREFIX: "TAG:";
 export const PHONE_CONNECTION_CB: "CB:Pong";
@@ -34,7 +41,7 @@ export namespace WA_CERT_DETAILS {
     let ISSUER: string;
     let PUBLIC_KEY: any;
 }
-export const PROCESSABLE_HISTORY_TYPES: any[];
+export const PROCESSABLE_HISTORY_TYPES: proto.HistorySync.HistorySyncType[];
 export namespace DEFAULT_CACHE_TTLS {
     let SIGNAL_STORE: number;
     let MSG_RETRY: number;
@@ -50,15 +57,15 @@ export namespace DEFAULT_CONNECTION_CONFIG {
     export let logger: any;
     export let emitOwnEvents: boolean;
     export let defaultQueryTimeoutMs: number;
-    export let customUploadHosts: never[];
+    export let customUploadHosts: any[];
     export let retryRequestDelayMs: number;
     export let maxMsgRetryCount: number;
     export let fireInitQueries: boolean;
-    export let auth: undefined;
+    export let auth: any;
     export let markOnlineOnConnect: boolean;
     export let syncFullHistory: boolean;
     export function patchMessageBeforeSending(msg: any): any;
-    export function shouldSyncHistoryMessage({ syncType }: {
+    export function shouldSyncHistoryMessage(opts1: { [key: string]: any; 
         syncType: any;
     }): boolean;
     export function shouldIgnoreJid(): boolean;
@@ -80,8 +87,8 @@ export namespace DEFAULT_CONNECTION_CONFIG {
         let snapshot: boolean;
     }
     export let countryCode: string;
-    export function getMessage(): Promise<undefined>;
-    export function cachedGroupMetadata(): Promise<undefined>;
+    export function getMessage(): Promise<any>;
+    export function cachedGroupMetadata(): Promise<any>;
     export { makeLibSignalRepository as makeSignalRepository };
 }
 export const MEDIA_PATH_MAP: {
@@ -147,6 +154,8 @@ export namespace TimeMs {
     let Day: number;
     let Week: number;
 }
+import { DEFAULT_WA_VERSION } from './version.js';
+import { proto } from '../../WAProto/index.js';
 declare const version: number[];
 import { makeLibSignalRepository } from '../Signal/libsignal.js';
-export {};
+export { DEFAULT_AI_BOT_JID } from "./bot-jid.js";

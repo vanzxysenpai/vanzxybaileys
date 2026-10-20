@@ -13,7 +13,7 @@ export class USyncDeviceProtocol {
             ts: any;
             expectedTs: any;
         };
-    } | null;
+    };
     parser(node: any): {
         deviceList: {
             id: number;
@@ -23,7 +23,7 @@ export class USyncDeviceProtocol {
         keyIndex: {
             timestamp: number;
             signedKeyIndex: any;
-            expectedTimestamp: number | undefined;
-        } | undefined;
+            expectedTimestamp: number;
+        };
     };
 }

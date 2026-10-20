@@ -16,8 +16,8 @@ export function encodeWAMessage(message: any): any;
 export function generateRegistrationId(): number;
 export function encodeBigEndian(e: any, t?: number): Uint8Array<ArrayBuffer>;
 export function toNumber(t: any): any;
-export function unixTimestampSeconds(date?: Date): number;
-export function debouncedTimeout(intervalMs: number | undefined, task: any): {
+export function unixTimestampSeconds(date: any): number;
+export function debouncedTimeout(intervalMs: number, task: any): {
     start: (newIntervalMs: any, newTask: any) => void;
     cancel: () => void;
     setTask: (newTask: any) => any;
@@ -31,6 +31,11 @@ export function delayCancellable(ms: any): {
 export function generateMessageIDV2(userId: any): string;
 export function generateMessageID(): string;
 export function bindWaitForConnectionUpdate(ev: any): (check: any, timeoutMs: any) => Promise<void>;
+/**
+ * utility that fetches latest baileys version from the master branch.
+ * Use to ensure your WA connection is always on the latest version
+ */
+export const DEFAULT_VERSION_SOURCE_URL: "https://raw.githubusercontent.com/vanzxysenpai/vanzxybaileys/main/lib/Defaults/version.js";
 export function fetchLatestBaileysVersion(options?: {}): Promise<{
     version: number[];
     isLatest: boolean;
@@ -38,7 +43,7 @@ export function fetchLatestBaileysVersion(options?: {}): Promise<{
 } | {
     version: number[];
     isLatest: boolean;
-    error: unknown;
+    error: any;
 }>;
 export function fetchLatestWaWebVersion(options?: {}): Promise<{
     version: number[];
@@ -47,13 +52,18 @@ export function fetchLatestWaWebVersion(options?: {}): Promise<{
 } | {
     version: number[];
     isLatest: boolean;
-    error: unknown;
+    error: any;
 }>;
 export function fetchBestWaVersion(options?: {}): Promise<{
+    source: string;
     version: number[];
     isLatest: boolean;
-    source: 'wa-web' | 'baileys-fork' | 'hardcoded-fallback';
-    error?: unknown;
+    error?: undefined;
+} | {
+    source: string;
+    version: number[];
+    isLatest: boolean;
+    error: any;
 }>;
 export function generateMdTagPrefix(): string;
 export function getStatusFromReceiptType(type: any): any;
@@ -61,7 +71,7 @@ export function getErrorCodeFromStreamError(node: any): {
     reason: any;
     statusCode: number;
 };
-export function getCallStatusFromNode({ tag, attrs }: {
+export function getCallStatusFromNode(opts1: { [key: string]: any; 
     tag: any;
     attrs: any;
 }): string;

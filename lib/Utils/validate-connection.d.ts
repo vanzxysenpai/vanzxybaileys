@@ -1,16 +1,16 @@
-export function generateLoginNode(userJid: any, config: any): any;
-export function generateRegistrationNode({ registrationId, signedPreKey, signedIdentityKey }: {
+export function generateLoginNode(userJid: any, config: any): proto.ClientPayload;
+export function generateRegistrationNode(opts2: { [key: string]: any; 
     registrationId: any;
     signedPreKey: any;
     signedIdentityKey: any;
-}, config: any): any;
-export function configureSuccessfulPairing(stanza: any, { advSecretKey, signedIdentityKey, signalIdentities }: {
+}, config: any): proto.ClientPayload;
+export function configureSuccessfulPairing(stanza: any, opts1: { [key: string]: any; 
     advSecretKey: any;
     signedIdentityKey: any;
     signalIdentities: any;
 }): {
     creds: {
-        account: any;
+        account: proto.ADVSignedDeviceIdentity;
         me: {
             id: any;
             name: any;
@@ -22,7 +22,7 @@ export function configureSuccessfulPairing(stanza: any, { advSecretKey, signedId
     reply: {
         tag: string;
         attrs: {
-            to: string;
+            to: "@s.whatsapp.net";
             type: string;
             id: any;
         };
@@ -40,3 +40,4 @@ export function configureSuccessfulPairing(stanza: any, { advSecretKey, signedId
     };
 };
 export function encodeSignedDeviceIdentity(account: any, includeSignatureKey: any): any;
+import { proto } from '../../WAProto/index.js';

@@ -8,14 +8,14 @@ export function getAudioDuration(buffer: any): Promise<any>;
 /**
   referenced from and modifying https://github.com/wppconnect-team/wa-js/blob/main/src/chat/functions/prepareAudioWaveform.ts
  */
-export function getAudioWaveform(buffer: any, logger: any): Promise<Uint8Array<ArrayBuffer> | undefined>;
+export function getAudioWaveform(buffer: any, logger: any): Promise<Uint8Array<ArrayBuffer>>;
 /** generates a thumbnail for a given media, if required */
 export function generateThumbnail(file: any, mediaType: any, options: any): Promise<{
     thumbnail: any;
     originalImageDimensions: {
         width: any;
         height: any;
-    } | undefined;
+    };
 }>;
 export function extensionForMediaMessage(message: any): any;
 export function getImageProcessingLibrary(): Promise<any>;
@@ -45,7 +45,7 @@ export function getStream(item: any, opts: any): Promise<{
     type: string;
 }>;
 export function getHttpStream(url: any, options?: {}): Promise<any>;
-export function encryptedStream(media: any, mediaType: any, { logger, saveOriginalFileIfRequired, opts }?: {}): Promise<{
+export function encryptedStream(media: any, mediaType: any, opts1?: { [key: string]: any; }): Promise<{
     mediaKey: any;
     originalFilePath: any;
     encFilePath: any;
@@ -56,28 +56,28 @@ export function encryptedStream(media: any, mediaType: any, { logger, saveOrigin
 }>;
 export const DEF_MEDIA_HOST: "mmg.whatsapp.net";
 export function getUrlFromDirectPath(directPath: any, host?: string): string;
-export function downloadContentFromMessage({ mediaKey, directPath, url }: {
+export function downloadContentFromMessage(opts5: { [key: string]: any; 
     mediaKey: any;
     directPath: any;
     url: any;
 }, type: any, opts?: {}): Promise<any>;
-export function downloadEncryptedContent(downloadUrl: any, { cipherKey, iv }: {
+export function downloadEncryptedContent(downloadUrl: any, opts2: { [key: string]: any; 
     cipherKey: any;
     iv: any;
-}, { startByte, endByte, options }?: {}): Promise<any>;
-export function uploadWithNodeHttp({ url, filePath, headers, timeoutMs, agent }: {
+}, opts3?: { [key: string]: any; }): Promise<any>;
+export function uploadWithNodeHttp(opts6: { [key: string]: any; 
     url: any;
     filePath: any;
     headers: any;
     timeoutMs: any;
     agent: any;
 }, redirectCount?: number): Promise<any>;
-export function getWAUploadToServer({ customUploadHosts, fetchAgent, logger, options }: {
+export function getWAUploadToServer(opts7: { [key: string]: any; 
     customUploadHosts: any;
     fetchAgent: any;
     logger: any;
     options: any;
-}, refreshMediaConn: any): (filePath: any, { mediaType, fileEncSha256B64, timeoutMs, newsletter }: {
+}, refreshMediaConn: any): (filePath: any, opts4: { [key: string]: any; 
     mediaType: any;
     fileEncSha256B64: any;
     timeoutMs: any;
@@ -128,8 +128,9 @@ export function decodeMediaRetryNode(node: any): {
         participant: any;
     };
 };
-export function decryptMediaRetryData({ ciphertext, iv }: {
+export function decryptMediaRetryData(opts8: { [key: string]: any; 
     ciphertext: any;
     iv: any;
-}, mediaKey: any, msgId: any): any;
-export function getStatusCodeForMediaRetry(code: any): number;
+}, mediaKey: any, msgId: any): proto.MediaRetryNotification;
+export function getStatusCodeForMediaRetry(code: any): any;
+import { proto } from '../../WAProto/index.js';

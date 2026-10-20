@@ -1,50 +1,107 @@
-import type { AnyMessageContent } from '../Types/index.js';
-import type makeWASocket from '../Socket/index.js';
-type WASocket = ReturnType<typeof makeWASocket>;
-export declare const STATUS_BROADCAST_JID = "status@broadcast";
-export declare const STATUS_BACKGROUNDS: {
-    solid: Record<string, string>;
-    gradient: Record<string, string[]>;
+export const STATUS_BROADCAST_JID: "status@broadcast";
+export namespace STATUS_BACKGROUNDS {
+    namespace solid {
+        let green: string;
+        let blue: string;
+        let purple: string;
+        let red: string;
+        let orange: string;
+        let yellow: string;
+        let pink: string;
+        let teal: string;
+        let gray: string;
+        let black: string;
+        let white: string;
+    }
+    namespace gradient {
+        export let sunset: string[];
+        export let ocean: string[];
+        export let forest: string[];
+        let purple_1: string[];
+        export { purple_1 as purple };
+        export let midnight: string[];
+        export let aurora: string[];
+    }
+}
+export namespace STATUS_FONTS {
+    let SANS_SERIF: number;
+    let SERIF: number;
+    let NORICAN: number;
+    let BRYNDAN: number;
+    let BEBASNEUE: number;
+    let OSWALD: number;
+    let DAMION: number;
+    let DANCING: number;
+    let COMFORTAA: number;
+    let EXOTWO: number;
+}
+export function generateStatusMessageId(): string;
+export function createTextStatus(options: any): {
+    text: any;
+    backgroundColor: any;
+    font: any;
+    textColor: any;
+    contextInfo: {
+        mentionedJid: any;
+        isForwarded: boolean;
+    };
 };
-export declare const STATUS_FONTS: {
-    readonly SANS_SERIF: 0;
-    readonly SERIF: 1;
-    readonly NORICAN: 2;
-    readonly BRYNDAN: 3;
-    readonly BEBASNEUE: 4;
-    readonly OSWALD: 5;
-    readonly DAMION: 6;
-    readonly DANCING: 7;
-    readonly COMFORTAA: 8;
-    readonly EXOTWO: 9;
+export function createImageStatus(media: any, options: any): {
+    image: any;
+    caption: any;
 };
-export type StatusFont = (typeof STATUS_FONTS)[keyof typeof STATUS_FONTS];
-export declare const generateStatusMessageId: () => string;
-export type TextStatusOptions = {
-    text: string;
-    backgroundColor?: string;
-    font?: StatusFont;
-    textColor?: string;
-    mentions?: string[];
+export function createVideoStatus(media: any, options: any): {
+    video: any;
+    caption: any;
+    gifPlayback: any;
 };
-export type MediaStatusOptions = {
-    caption?: string;
-    gifPlayback?: boolean;
-    waveform?: Uint8Array;
+export function createAudioStatus(media: any, options: any): {
+    audio: any;
+    ptt: boolean;
+    mimetype: string;
+    waveform: any;
 };
-export declare const createTextStatus: (options: TextStatusOptions) => AnyMessageContent;
-export declare const createImageStatus: (media: Buffer | string, options?: MediaStatusOptions) => AnyMessageContent;
-export declare const createVideoStatus: (media: Buffer | string, options?: MediaStatusOptions) => AnyMessageContent;
-export declare const createAudioStatus: (media: Buffer | string, options?: MediaStatusOptions) => AnyMessageContent;
-export declare const getStatusJid: () => string;
-export declare const StatusHelper: {
-    text: (text: string, backgroundColor?: string, font?: StatusFont) => AnyMessageContent;
-    image: (buffer: Buffer, caption?: string) => AnyMessageContent;
-    imageUrl: (url: string, caption?: string) => AnyMessageContent;
-    video: (buffer: Buffer, caption?: string) => AnyMessageContent;
-    videoUrl: (url: string, caption?: string) => AnyMessageContent;
-    gif: (buffer: Buffer, caption?: string) => AnyMessageContent;
-    voiceNote: (buffer: Buffer) => AnyMessageContent;
-    send: (sock: WASocket, content: AnyMessageContent, jidList?: string[]) => Promise<any>;
-};
-export {};
+export function getStatusJid(): string;
+export namespace StatusHelper {
+    function text(text: any, backgroundColor: any, font: any): {
+        text: any;
+        backgroundColor: any;
+        font: any;
+        textColor: any;
+        contextInfo: {
+            mentionedJid: any;
+            isForwarded: boolean;
+        };
+    };
+    function image(buffer: any, caption: any): {
+        image: any;
+        caption: any;
+    };
+    function imageUrl(url: any, caption: any): {
+        image: any;
+        caption: any;
+    };
+    function video(buffer: any, caption: any): {
+        video: any;
+        caption: any;
+        gifPlayback: any;
+    };
+    function videoUrl(url: any, caption: any): {
+        video: any;
+        caption: any;
+        gifPlayback: any;
+    };
+    function gif(buffer: any, caption: any): {
+        video: any;
+        caption: any;
+        gifPlayback: any;
+    };
+    function voiceNote(buffer: any): {
+        audio: any;
+        ptt: boolean;
+        mimetype: string;
+        waveform: any;
+    };
+    function send(sock: any, content: any, jidList?: any[]): Promise<any>;
+}
+export function withMusicAttribution(content: any, music?: {}): any;

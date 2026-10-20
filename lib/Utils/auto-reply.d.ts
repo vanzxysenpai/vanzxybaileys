@@ -1,47 +1,35 @@
-import type { WAMessage, AnyMessageContent } from '../Types/index.js';
-export interface AutoReplyRule {
-    id?: string;
-    keywords?: string[];
-    pattern?: RegExp;
-    exactMatch?: string;
-    response: AnyMessageContent | ((message: WAMessage, match: RegExpMatchArray | string[]) => Promise<AnyMessageContent> | AnyMessageContent);
-    cooldown?: number;
-    priority?: number;
-    active?: boolean;
-    groupsOnly?: boolean;
-    privateOnly?: boolean;
-    allowedJids?: string[];
-    blockedJids?: string[];
-    quoted?: boolean;
-}
-export interface AutoReplyOptions {
-    globalCooldown?: number;
-    simulateTyping?: boolean;
-    typingDuration?: number;
-    multiMatch?: boolean;
-    onReply?: (rule: AutoReplyRule, message: WAMessage, response: AnyMessageContent) => void;
-    onError?: (error: Error, rule: AutoReplyRule, message: WAMessage) => void;
-}
-export declare class AutoReplyHandler {
-    private rules;
-    private cooldowns;
-    private globalCooldown;
-    private sendMessage;
-    private sendPresence?;
-    private options;
-    constructor(sendMessage: (jid: string, content: AnyMessageContent, options?: any) => Promise<any>, sendPresence?: (jid: string, presence: string) => Promise<void>, options?: AutoReplyOptions);
-    addRule(rule: AutoReplyRule): AutoReplyRule & {
-        id: string;
+export class AutoReplyHandler {
+    constructor(sendMessage: any, sendPresence: any, options?: {});
+    rules: Map<any, any>;
+    cooldowns: Map<any, any>;
+    globalCooldown: Map<any, any>;
+    sendMessage: any;
+    sendPresence: any;
+    options: {
+        globalCooldown: any;
+        simulateTyping: any;
+        typingDuration: any;
+        multiMatch: any;
+        onReply: any;
+        onError: any;
     };
-    removeRule(id: string): boolean;
-    getRules(): (AutoReplyRule & {
-        id: string;
-    })[];
-    getRule(id: string): (AutoReplyRule & {
-        id: string;
-    }) | undefined;
-    setRuleActive(id: string, active: boolean): boolean;
+    generateId(): string;
+    /** Add a rule keyed by keywords, a regex pattern, or an exact-match string. */
+    addRule(rule: any): any;
+    removeRule(id: any): boolean;
+    getRules(): any[];
+    getRule(id: any): any;
+    setRuleActive(id: any, active: any): boolean;
     clearRules(): void;
-    processMessage(message: WAMessage): Promise<boolean>;
+    checkCooldown(ruleId: any, jid: any): boolean;
+    checkGlobalCooldown(jid: any): boolean;
+    setCooldown(ruleId: any, jid: any, cooldown: any): void;
+    matchRule(text: any, rule: any): any;
+    isJidAllowed(jid: any, rule: any): boolean;
+    /**
+     * Feed each incoming message through here (e.g. from `messages.upsert`).
+     * Returns true if a rule matched and a reply was sent.
+     */
+    processMessage(message: any): Promise<boolean>;
 }
-export declare const createAutoReply: (sendMessage: (jid: string, content: AnyMessageContent, options?: any) => Promise<any>, sendPresence?: (jid: string, presence: string) => Promise<void>, options?: AutoReplyOptions) => AutoReplyHandler;
+export function createAutoReply(sendMessage: any, sendPresence: any, options: any): AutoReplyHandler;

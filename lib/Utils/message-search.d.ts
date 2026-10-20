@@ -1,44 +1,40 @@
-import type { WAMessage } from '../Types/index.js';
-export type SearchMessageType = 'text' | 'image' | 'video' | 'document' | 'audio' | 'sticker' | 'location' | 'contact' | 'other';
-export interface SearchOptions {
-    jid?: string;
-    fromDate?: Date;
-    toDate?: Date;
-    fromSender?: string;
-    fromMe?: boolean;
-    messageTypes?: SearchMessageType[];
-    limit?: number;
-    caseSensitive?: boolean;
-}
-export interface SearchResult {
-    message: WAMessage;
-    matchedText: string;
-    matchPosition: number;
+export function extractMessageText(message: any): any;
+export function calculateRelevance(query: any, text: any, position: any): number;
+export function searchMessages(messages: any, query: any, options?: {}): {
+    message: any;
+    matchedText: any;
+    matchPosition: any;
     relevanceScore: number;
-}
-export interface RegexSearchOptions {
-    jid?: string;
-    fromSender?: string;
-    fromMe?: boolean;
-    messageTypes?: SearchMessageType[];
-    limit?: number;
-}
-export declare const extractMessageText: (message: WAMessage) => string;
-export declare const calculateRelevance: (query: string, text: string, position: number) => number;
-export declare const searchMessages: (messages: WAMessage[], query: string, options?: SearchOptions) => SearchResult[];
-export declare const searchMessagesRegex: (messages: WAMessage[], pattern: RegExp, options?: RegexSearchOptions) => SearchResult[];
-export declare class MessageSearchManager {
-    private messages;
-    private messageIndex;
-    addMessages(messages: WAMessage[]): void;
-    removeMessages(messageIds: string[]): void;
+}[];
+export function searchMessagesRegex(messages: any, pattern: any, options?: {}): {
+    message: any;
+    matchedText: any;
+    matchPosition: any;
+    relevanceScore: number;
+}[];
+/** Standalone searchable index — feed it messages independently of the main Store. */
+export class MessageSearchManager {
+    messages: any[];
+    messageIndex: Map<any, any>;
+    addMessages(messages: any): void;
+    removeMessages(messageIds: any): void;
     clear(): void;
     get count(): number;
-    search(query: string, options?: SearchOptions): SearchResult[];
-    searchRegex(pattern: RegExp, options?: RegexSearchOptions): SearchResult[];
-    getByJid(jid: string): WAMessage[];
-    getBySender(sender: string): WAMessage[];
-    getByType(type: SearchMessageType): WAMessage[];
-    getById(id: string): WAMessage | undefined;
+    search(query: any, options: any): {
+        message: any;
+        matchedText: any;
+        matchPosition: any;
+        relevanceScore: number;
+    }[];
+    searchRegex(pattern: any, options: any): {
+        message: any;
+        matchedText: any;
+        matchPosition: any;
+        relevanceScore: number;
+    }[];
+    getByJid(jid: any): any[];
+    getBySender(sender: any): any[];
+    getByType(type: any): any[];
+    getById(id: any): any;
 }
-export declare const createMessageSearch: () => MessageSearchManager;
+export function createMessageSearch(): MessageSearchManager;

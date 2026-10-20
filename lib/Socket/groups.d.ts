@@ -1,3 +1,4 @@
+export function persistLidPnMappings(signalRepository: any, participants: any): Promise<void>;
 export function makeGroupsSocket(config: any): {
     groupQuery: (jid: any, type: any, content: any) => Promise<any>;
     groupMetadata: (jid: any) => Promise<{
@@ -11,16 +12,16 @@ export function makeGroupsSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -29,7 +30,7 @@ export function makeGroupsSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupCreate: (subject: any, participants: any) => Promise<{
         id: any;
@@ -42,16 +43,16 @@ export function makeGroupsSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -60,7 +61,7 @@ export function makeGroupsSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupLeave: (id: any) => Promise<void>;
     groupUpdateSubject: (jid: any, subject: any) => Promise<void>;
@@ -95,16 +96,16 @@ export function makeGroupsSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -113,7 +114,7 @@ export function makeGroupsSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupToggleEphemeral: (jid: any, ephemeralExpiration: any) => Promise<void>;
     groupSettingUpdate: (jid: any, setting: any) => Promise<void>;
@@ -121,8 +122,8 @@ export function makeGroupsSocket(config: any): {
     groupJoinApprovalMode: (jid: any, mode: any) => Promise<void>;
     groupFetchAllParticipating: () => Promise<{}>;
     findUserId: (pnLid: any) => Promise<{
-        lid: undefined;
-        phoneNumber: undefined;
+        lid: any;
+        phoneNumber: any;
     }>;
     serverProps: {
         privacyTokenOn1to1: boolean;
@@ -181,7 +182,7 @@ export function makeGroupsSocket(config: any): {
             timezone: any;
             business_config: any;
         };
-    } | undefined>;
+    }>;
     resyncAppState: (...args: any[]) => Promise<any>;
     chatModify: (mod: any, jid: any) => Promise<void>;
     cleanDirtyBits: (type: any, fromTimestamp: any) => Promise<void>;
@@ -231,12 +232,13 @@ export function makeGroupsSocket(config: any): {
     end: (error: any) => Promise<void>;
     registerSocketEndHandler: (handler: any) => void;
     onUnexpectedError: (err: any, msg: any) => void;
-    uploadPreKeys: (count?: number) => Promise<void>;
+    uploadPreKeys: (count?: 5) => Promise<void>;
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     digestKeyBundle: () => Promise<void>;
     rotateSignedPreKey: () => Promise<void>;
     requestPairingCode: (phoneNumber: any, customPairingCode: any) => Promise<any>;
-    updateServerTimeOffset: ({ attrs }: {
+    updateServerTimeOffset: (opts1: {
+        [key: string]: any;
         attrs: any;
     }) => void;
     sendUnifiedSession: () => Promise<void>;
@@ -247,7 +249,7 @@ export function makeGroupsSocket(config: any): {
     onWhatsApp: (...phoneNumber: any[]) => Promise<any>;
     fetchAccountReachoutTimelock: () => Promise<{
         isActive: boolean;
-        timeEnforcementEnds: Date | undefined;
+        timeEnforcementEnds: Date;
         enforcementType: any;
     }>;
     fetchNewChatMessageCap: () => Promise<any>;
@@ -263,16 +265,16 @@ export function extractGroupMetadata(result: any): {
     subjectTime: number;
     size: any;
     creation: number;
-    owner: string | undefined;
-    ownerPn: string | undefined;
+    owner: string;
+    ownerPn: string;
     ownerUsername: any;
     owner_country_code: any;
     desc: any;
     descId: any;
-    descOwner: string | undefined;
-    descOwnerPn: string | undefined;
+    descOwner: string;
+    descOwnerPn: string;
     descOwnerUsername: any;
-    descTime: number | undefined;
+    descTime: number;
     linkedParent: any;
     restrict: boolean;
     announce: boolean;
@@ -281,5 +283,5 @@ export function extractGroupMetadata(result: any): {
     joinApprovalMode: boolean;
     memberAddMode: boolean;
     participants: any;
-    ephemeralDuration: number | undefined;
+    ephemeralDuration: number;
 };

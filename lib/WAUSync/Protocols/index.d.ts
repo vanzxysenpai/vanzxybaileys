@@ -5,3 +5,8 @@ export * from "./USyncDisappearingModeProtocol.js";
 export * from "./USyncUsernameProtocol.js";
 export * from "./UsyncBotProfileProtocol.js";
 export * from "./UsyncLIDProtocol.js";
+export * from "./USyncBusinessProtocol.js";
+export * from "./USyncPictureProtocol.js";
+export * from "./USyncTextStatusProtocol.js";
+export * from "./USyncSidelistProtocol.js";
+export * from "./USyncFeatureProtocol.js";

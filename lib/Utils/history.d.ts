@@ -1,4 +1,4 @@
-export function downloadHistory(msg: any, options: any): Promise<any>;
+export function downloadHistory(msg: any, options: any): Promise<proto.HistorySync>;
 export function processHistoryMessage(item: any, logger: any): {
     messages: any[];
     contacts: any[];
@@ -88,3 +88,4 @@ export function downloadAndProcessHistorySyncNotification(msg: any, options: any
     progress: any;
 }>;
 export function getHistoryMsg(message: any): any;
+import { proto } from '../../WAProto/index.js';

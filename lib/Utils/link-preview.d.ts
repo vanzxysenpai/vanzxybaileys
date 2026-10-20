@@ -9,4 +9,4 @@ export function getUrlInfo(text: any, opts?: {
     title: any;
     description: any;
     originalThumbnailUrl: any;
-} | undefined>;
+}>;

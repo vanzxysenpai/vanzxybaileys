@@ -12,7 +12,7 @@ export function makeNoiseHandler({ keyPair: { private: privateKey, public: publi
     authenticate: (data: any) => void;
     mixIntoKey: (data: any) => void;
     finishInit: () => Promise<void>;
-    processHandshake: ({ serverHello }: {
+    processHandshake: (opts1: { [key: string]: any; 
         serverHello: any;
     }, noiseKey: any) => any;
     encodeFrame: (data: any) => any;

@@ -1,76 +1,86 @@
-export interface TemplateVariable {
-    name: string;
-    defaultValue?: string;
-    required: boolean;
-}
-export interface MessageTemplate {
-    id: string;
-    name: string;
-    content: string;
-    description?: string;
-    category?: string;
-    variables: TemplateVariable[];
-    createdAt: Date;
-    updatedAt: Date;
-}
-export type TemplateData = Record<string, string | number | undefined | null>;
-export declare class TemplateManager {
-    private templates;
-    private generateId;
-    private extractVariables;
-    create(options: {
-        id?: string;
+export class TemplateManager {
+    templates: Map<any, any>;
+    generateId(): string;
+    extractVariables(content: any): {
         name: string;
-        content: string;
-        description?: string;
-        category?: string;
-    }): MessageTemplate;
-    get(id: string): MessageTemplate | undefined;
-    getByName(name: string): MessageTemplate | undefined;
-    getAll(): MessageTemplate[];
-    getByCategory(category: string): MessageTemplate[];
-    update(id: string, updates: Partial<MessageTemplate>): MessageTemplate | undefined;
-    delete(id: string): boolean;
-    renderContent(content: string, data?: TemplateData): string;
-    render(id: string, data?: TemplateData): string;
-    validate(id: string, data: TemplateData): {
+        defaultValue: string;
+        required: boolean;
+    }[];
+    create(options: any): {
+        id: any;
+        name: any;
+        content: any;
+        description: any;
+        category: any;
+        variables: {
+            name: string;
+            defaultValue: string;
+            required: boolean;
+        }[];
+        createdAt: Date;
+        updatedAt: Date;
+    };
+    get(id: any): any;
+    getByName(name: any): any;
+    getAll(): any[];
+    getByCategory(category: any): any[];
+    update(id: any, updates: any): any;
+    delete(id: any): boolean;
+    renderContent(content: any, data?: {}): any;
+    render(id: any, data?: {}): any;
+    validate(id: any, data: any): {
         valid: boolean;
-        missing: string[];
+        missing: any;
     };
     export(): string;
-    import(json: string, overwrite?: boolean): number;
+    import(json: any, overwrite?: boolean): number;
 }
-export declare const PRESET_TEMPLATES: {
-    ORDER_CONFIRMATION: {
-        name: string;
-        category: string;
-        content: string;
-    };
-    WELCOME: {
-        name: string;
-        category: string;
-        content: string;
-    };
-    REMINDER: {
-        name: string;
-        category: string;
-        content: string;
-    };
-    SUPPORT_TICKET: {
-        name: string;
-        category: string;
-        content: string;
-    };
-    BIRTHDAY: {
-        name: string;
-        category: string;
-        content: string;
-    };
-    INVOICE: {
-        name: string;
-        category: string;
-        content: string;
-    };
-};
-export declare const createTemplateManager: (includePresets?: boolean) => TemplateManager;
-export declare const renderTemplate: (content: string, data?: TemplateData) => string;
+export namespace PRESET_TEMPLATES {
+    namespace ORDER_CONFIRMATION {
+        let name: string;
+        let category: string;
+        let content: string;
+    }
+    namespace WELCOME {
+        let name_1: string;
+        export { name_1 as name };
+        let category_1: string;
+        export { category_1 as category };
+        let content_1: string;
+        export { content_1 as content };
+    }
+    namespace REMINDER {
+        let name_2: string;
+        export { name_2 as name };
+        let category_2: string;
+        export { category_2 as category };
+        let content_2: string;
+        export { content_2 as content };
+    }
+    namespace SUPPORT_TICKET {
+        let name_3: string;
+        export { name_3 as name };
+        let category_3: string;
+        export { category_3 as category };
+        let content_3: string;
+        export { content_3 as content };
+    }
+    namespace BIRTHDAY {
+        let name_4: string;
+        export { name_4 as name };
+        let category_4: string;
+        export { category_4 as category };
+        let content_4: string;
+        export { content_4 as content };
+    }
+    namespace INVOICE {
+        let name_5: string;
+        export { name_5 as name };
+        let category_5: string;
+        export { category_5 as category };
+        let content_5: string;
+        export { content_5 as content };
+    }
+}
+export function createTemplateManager(includePresets?: boolean): TemplateManager;
+export function renderTemplate(content: any, data?: {}): any;

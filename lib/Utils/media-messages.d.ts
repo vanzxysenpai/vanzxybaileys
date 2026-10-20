@@ -1,18 +1,35 @@
-import type { WAMediaUpload } from '../Types/index.js';
-export declare const generateProfilePictureFull: (img: Buffer | string) => Promise<{
-    img: Buffer;
+/**
+ * Generates a panoramic/wide profile picture buffer — landscape images are
+ * scaled down to a 720px-wide target, portrait images to a 324px-wide
+ * target, preserving aspect ratio throughout.
+ */
+export function generateProfilePictureFull(img: any): Promise<{
+    img: any;
 }>;
-export declare const changeprofileFull: (img: Buffer | string) => Promise<{
-    img: Buffer;
+/**
+ * Generates a panoramic/wide profile picture buffer — landscape images are
+ * scaled down to a 720px-wide target, portrait images to a 324px-wide
+ * target, preserving aspect ratio throughout.
+ */
+export function changeprofileFull(img: any): Promise<{
+    img: any;
 }>;
-export declare const generateProfilePictureFP: (buffer: Buffer | string) => Promise<{
-    img: Buffer;
-    preview: Buffer;
+/**
+ * Generates a square profile picture buffer (main image, scaled to fit
+ * within 720x720) plus a normalized preview buffer.
+ */
+export function generateProfilePictureFP(buffer: any): Promise<{
+    img: any;
+    preview: any;
 }>;
-export declare const generatePP: (buffer: Buffer | string) => Promise<{
-    img: Buffer;
-    preview: Buffer;
+/**
+ * Generates a square profile picture buffer (main image, scaled to fit
+ * within 720x720) plus a normalized preview buffer.
+ */
+export function generatePP(buffer: any): Promise<{
+    img: any;
+    preview: any;
 }>;
-export declare const generateProfilePicturee: (mediaUpload: WAMediaUpload) => Promise<{
-    img: Buffer;
+export function generateProfilePicturee(mediaUpload: any): Promise<{
+    img: any;
 }>;

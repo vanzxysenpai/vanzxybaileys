@@ -1,74 +1,62 @@
-import type { WAMessage, WAMessageKey } from '../Types/index.js';
-export interface MessageStoreOptions {
-    maxMessagesPerChat?: number;
-    ttl?: number;
-    cleanupInterval?: number;
-}
-export interface StoredMessage {
-    message: WAMessage;
-    storedAt: number;
-    isDeleted: boolean;
-    deletedAt?: number;
-    deletedBy?: string;
-}
-export interface DeletedMessageInfo {
-    originalMessage: WAMessage;
-    key: WAMessageKey;
-    deletedAt: number;
-    deletedBy?: string;
-    isRevokedBySender: boolean;
-}
-export declare class MessageStore {
-    private store;
-    private deletedMessages;
-    private cleanupTimer;
-    private options;
-    constructor(options?: MessageStoreOptions);
+/**
+ * In-memory, TTL-bounded store of recently seen messages, used to recover the
+ * original content of a message after WhatsApp delivers a REVOKE (delete-for-everyone)
+ * protocol message, which itself carries no content — only a reference key.
+ */
+export class MessageStore {
+    constructor(options?: {});
+    store: Map<any, any>;
+    deletedMessages: Map<any, any>;
+    cleanupTimer: any;
+    options: {
+        maxMessagesPerChat: any;
+        ttl: any;
+        cleanupInterval: any;
+    };
+    startCleanup(): void;
     stopCleanup(): void;
-    storeMessage(message: WAMessage): void;
-    storeMessages(messages: WAMessage[]): void;
-    getMessage(key: WAMessageKey): StoredMessage | undefined;
-    getOriginalMessage(key: WAMessageKey): WAMessage | undefined;
-    markAsDeleted(key: WAMessageKey, deletedBy?: string): DeletedMessageInfo | null;
-    getDeletedMessage(key: WAMessageKey): DeletedMessageInfo | undefined;
-    getAllDeletedMessages(): DeletedMessageInfo[];
-    getDeletedMessagesByChat(chatId: string): DeletedMessageInfo[];
-    getChatMessages(chatId: string): WAMessage[];
-    getChatIds(): string[];
+    cleanup(): void;
+    getKey(key: any): string;
+    storeMessage(message: any): void;
+    storeMessages(messages: any): void;
+    getMessage(key: any): any;
+    getOriginalMessage(key: any): any;
+    markAsDeleted(key: any, deletedBy: any): {
+        originalMessage: any;
+        key: any;
+        deletedAt: number;
+        deletedBy: any;
+        isRevokedBySender: boolean;
+    };
+    getDeletedMessage(key: any): any;
+    getAllDeletedMessages(): any[];
+    getDeletedMessagesByChat(chatId: any): any[];
+    getChatMessages(chatId: any): any[];
+    getChatIds(): any[];
     getStats(): {
         totalChats: number;
         totalMessages: number;
         totalDeleted: number;
     };
     clear(): void;
-    clearChat(chatId: string): void;
-    getAllMessages(): Record<string, WAMessage[]>;
+    clearChat(chatId: any): void;
+    getAllMessages(): {};
 }
-export declare const isDeleteMessage: (message: WAMessage) => boolean;
-export declare const getDeletedMessageKey: (message: WAMessage) => WAMessageKey | null;
-export declare const createAntiDeleteHandler: (store: MessageStore, onDelete?: (info: DeletedMessageInfo) => void) => (updates: Array<{
-    key: WAMessageKey;
-    update: Partial<WAMessage>;
-}>) => DeletedMessageInfo[];
-export declare const createAntiDeleteUpsertHandler: (store: MessageStore, onDelete?: (info: DeletedMessageInfo) => void) => ({ messages }: {
-    messages: WAMessage[];
-}) => DeletedMessageInfo[];
-export declare const createMessageStoreHandler: (store: MessageStore) => ({ messages }: {
-    messages: WAMessage[];
+export function isDeleteMessage(message: any): boolean;
+export function getDeletedMessageKey(message: any): any;
+export function createAntiDeleteHandler(store: any, onDelete: any): (updates: any) => any[];
+export function createAntiDeleteUpsertHandler(store: any, onDelete: any): (opts1: { [key: string]: any; 
+    messages: any;
+}) => any[];
+export function createMessageStoreHandler(store: any): (opts2: { [key: string]: any; 
+    messages: any;
 }) => void;
-declare const _default: {
-    MessageStore: typeof MessageStore;
-    isDeleteMessage: (message: WAMessage) => boolean;
-    getDeletedMessageKey: (message: WAMessage) => WAMessageKey | null;
-    createAntiDeleteHandler: (store: MessageStore, onDelete?: (info: DeletedMessageInfo) => void) => (updates: Array<{
-        key: WAMessageKey;
-        update: Partial<WAMessage>;
-    }>) => DeletedMessageInfo[];
-    createAntiDeleteUpsertHandler: (store: MessageStore, onDelete?: (info: DeletedMessageInfo) => void) => ({ messages }: {
-        messages: WAMessage[];
-    }) => DeletedMessageInfo[];
-    createMessageStoreHandler: (store: MessageStore) => ({ messages }: {
-        messages: WAMessage[];
-    }) => void;
-};
+declare namespace _default {
+    export { MessageStore };
+    export { isDeleteMessage };
+    export { getDeletedMessageKey };
+    export { createAntiDeleteHandler };
+    export { createAntiDeleteUpsertHandler };
+    export { createMessageStoreHandler };
+}
 export default _default;

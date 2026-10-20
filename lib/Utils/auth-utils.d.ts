@@ -7,9 +7,11 @@
 export function makeCacheableSignalKeyStore(store: any, logger: any, _cache: any): {
     get(type: any, ids: any): Promise<any>;
     set(data: any): Promise<any>;
+    list(type: any): AsyncGenerator<any, void, any>;
+    listIds(type: any): AsyncGenerator<any, void, any>;
     clear(): Promise<void>;
 };
-export function addTransactionCapability(state: any, logger: any, { maxCommitRetries, delayBetweenTriesMs }: {
+export function addTransactionCapability(state: any, logger: any, opts1: { [key: string]: any; 
     maxCommitRetries: any;
     delayBetweenTriesMs: any;
 }): {
@@ -42,7 +44,7 @@ export function initAuthCreds(): {
     };
     registrationId: number;
     advSecretKey: any;
-    processedHistoryMessages: never[];
+    processedHistoryMessages: any[];
     nextPreKeyId: number;
     firstUnuploadedPreKeyId: number;
     accountSyncCounter: number;
@@ -50,8 +52,8 @@ export function initAuthCreds(): {
         unarchiveChats: boolean;
     };
     registered: boolean;
-    pairingCode: undefined;
-    lastPropHash: undefined;
-    routingInfo: undefined;
-    additionalData: undefined;
+    pairingCode: any;
+    lastPropHash: any;
+    routingInfo: any;
+    additionalData: any;
 };

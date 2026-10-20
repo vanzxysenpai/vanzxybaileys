@@ -9,10 +9,10 @@ export class LIDMappingStore {
     storeLIDPNMappings(pairs: any): Promise<void>;
     getLIDForPN(pn: any): Promise<any>;
     getLIDsForPNs(pns: any): Promise<any>;
-    _getLIDsForPNsImpl(pns: any): Promise<any[] | null>;
+    _getLIDsForPNsImpl(pns: any): Promise<any[]>;
     getPNForLID(lid: any): Promise<any>;
     getPNsForLIDs(lids: any): Promise<any>;
-    _getPNsForLIDsImpl(lids: any): Promise<any[] | null>;
+    _getPNsForLIDsImpl(lids: any): Promise<any[]>;
     /**
      * Close the cache and release resources
      */

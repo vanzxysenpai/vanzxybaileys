@@ -4,9 +4,9 @@ export class USyncStatusProtocol {
         tag: string;
         attrs: {};
     };
-    getUserElement(): null;
+    getUserElement(): any;
     parser(node: any): {
         status: any;
         setAt: Date;
-    } | undefined;
+    };
 }

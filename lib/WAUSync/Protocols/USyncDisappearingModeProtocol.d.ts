@@ -4,9 +4,9 @@ export class USyncDisappearingModeProtocol {
         tag: string;
         attrs: {};
     };
-    getUserElement(): null;
+    getUserElement(): any;
     parser(node: any): {
         duration: number;
         setAt: Date;
-    } | undefined;
+    };
 }

@@ -5,7 +5,7 @@ export function makeMessagesSocket(config: any): {
     };
     issuePrivacyTokens: (jids: any, timestamp: any) => Promise<any>;
     assertSessions: (jids: any, force: any) => Promise<boolean>;
-    relayMessage: (jid: any, message: any, { messageId: msgId, participant, additionalAttributes, additionalNodes, useUserDevicesCache, useCachedGroupMetadata, addBizAttributes, statusJidList }: {
+    relayMessage: (jid: any, message: any, opts1: { [key: string]: any; 
         messageId: any;
         participant: any;
         additionalAttributes: any;
@@ -14,13 +14,16 @@ export function makeMessagesSocket(config: any): {
         useCachedGroupMetadata: any;
         addBizAttributes: any;
         statusJidList: any;
+        recipientOverrides: any;
+        restrictKeyTo: any;
     }) => Promise<any>;
     sendReceipt: (jid: any, participant: any, messageIds: any, type: any) => Promise<void>;
     sendReceipts: (keys: any, type: any) => Promise<void>;
     readMessages: (keys: any) => Promise<void>;
     refreshMediaConn: (forceGet?: boolean) => Promise<any>;
-    getMediaHost: () => string;
-    waUploadToServer: (filePath: any, { mediaType, fileEncSha256B64, timeoutMs, newsletter }: {
+    getMediaHost: () => "mmg.whatsapp.net";
+    waUploadToServer: (filePath: any, opts4: {
+        [key: string]: any;
         mediaType: any;
         fileEncSha256B64: any;
         timeoutMs: any;
@@ -41,17 +44,286 @@ export function makeMessagesSocket(config: any): {
         shouldIncludeDeviceIdentity: boolean;
     }>;
     getUSyncDevices: (jids: any, useCache: any, ignoreZeroDevices: any) => Promise<any[]>;
-    messageRetryManager: MessageRetryManager | null;
+    messageRetryManager: MessageRetryManager;
     updateMemberLabel: (jid: any, memberLabel: any) => Promise<any>;
     updateMediaMessage: (message: any) => Promise<any>;
-    sendMessage: (jid: any, content: any, options?: {}) => Promise<any>;
-    sendReaction: (jid: any, reaction: any, key: any) => Promise<any>;
+    sendTable: (jid: any, title: any, headers: any, rows: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendTableV2: (jid: any, table: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            messageContextInfo: {
+                threadId: any[];
+                deviceListMetadata: {
+                    senderKeyIndexes: any[];
+                    recipientKeyIndexes: any[];
+                    recipientKeyHash: string;
+                    recipientTimestamp: number;
+                };
+                deviceListMetadataVersion: number;
+                messageSecret: any;
+            };
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        submessages: any[];
+                        messageType: number;
+                        unifiedResponse: {
+                            data: any;
+                        };
+                        contextInfo: {
+                            forwardingScore: number;
+                            isForwarded: boolean;
+                            forwardedAiBotMessageInfo: {
+                                botJid: string;
+                            };
+                            forwardOrigin: number;
+                            botMessageSharingInfo: {
+                                botEntryPointOrigin: number;
+                                forwardScore: number;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendList: (jid: any, title: any, items: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendCodeBlock: (jid: any, code: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendCodeBlockV2: (jid: any, code: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            messageContextInfo: {
+                threadId: any[];
+                deviceListMetadata: {
+                    senderKeyIndexes: any[];
+                    recipientKeyIndexes: any[];
+                    recipientKeyHash: string;
+                    recipientTimestamp: number;
+                };
+                deviceListMetadataVersion: number;
+                messageSecret: any;
+            };
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        submessages: any[];
+                        messageType: number;
+                        unifiedResponse: {
+                            data: any;
+                        };
+                        contextInfo: {
+                            mentionedJid: any[];
+                            groupMentions: any[];
+                            statusAttributions: any[];
+                            forwardingScore: number;
+                            isForwarded: boolean;
+                            forwardedAiBotMessageInfo: {
+                                botJid: string;
+                            };
+                            forwardOrigin: number;
+                            botMessageSharingInfo: {
+                                botEntryPointOrigin: number;
+                                forwardScore: number;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendLink: (jid: any, text: any, links: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            messageContextInfo: {
+                messageSecret: any;
+            };
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: {
+                            messageType: number;
+                            messageText: any;
+                        }[];
+                        unifiedResponse: {
+                            data: any;
+                        };
+                        contextInfo: {
+                            forwardingScore: any;
+                            isForwarded: boolean;
+                            forwardedAiBotMessageInfo: {
+                                botJid: any;
+                            };
+                            forwardOrigin: number;
+                            botMessageSharingInfo: {
+                                forwardScore: any;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendLinkV2: (jid: any, text: any, links: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            messageContextInfo: {
+                threadId: any[];
+                messageSecret: any;
+            };
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: {
+                            messageType: number;
+                            messageText: any;
+                        }[];
+                        unifiedResponse: {
+                            data: any;
+                        };
+                        contextInfo: {
+                            isForwarded: boolean;
+                            forwardOrigin: number;
+                        };
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendLatex: (jid: any, quoted: any, options: any) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendLatexImage: (jid: any, quoted: any, options: any, uploadFn: any, renderLatexToPng: any) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendLatexInlineImage: (jid: any, quoted: any, options: any, uploadFn: any, renderLatexToPng: any) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    captureUnifiedResponse: typeof captureUnifiedResponse;
+    sendUnifiedResponse: (jid: any, quoted: any, captured: any) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendRichMessage: (jid: any, submessages: any, quoted: any, options?: {}) => Promise<{
+        message: {
+            botForwardedMessage: {
+                message: {
+                    richResponseMessage: {
+                        messageType: number;
+                        submessages: any;
+                        contextInfo: any;
+                    };
+                };
+            };
+        };
+        messageId: string;
+    }>;
+    sendMessage: (jid: any, content: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendAlbumMessage: (jid: any, medias: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendReaction: (jid: any, reaction: any, key: any) => Promise<proto.WebMessageInfo>;
+    sendPin: (jid: any, key: any, opts2?: { [key: string]: any; 
+        durationSec?: number;
+    }, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendUnpin: (jid: any, key: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendKeep: (jid: any, key: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendUnkeep: (jid: any, key: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendEvent: (jid: any, event: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendPoll: (jid: any, poll: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendQuiz: (jid: any, quiz: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    editPoll: (jid: any, key: any, poll: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendMentionAll: (jid: any, text: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendStatusMention: (content: any, mentions: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendLocation: (jid: any, location: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendContact: (jid: any, contact: any, options?: {}) => Promise<proto.WebMessageInfo>;
+    sendGroupInvite: (jid: any, invite: any, options?: {}) => Promise<proto.WebMessageInfo>;
     downloadMedia: (message: any, type?: string, options?: {}) => Promise<any>;
-    copyNForward: (jid: any, message: any, forceForward?: boolean, options?: {}) => Promise<any>;
-    executeWMexQuery: (variables: any, queryId: any, dataPath: any) => Promise<any>;
+    copyNForward: (jid: any, message: any, forceForward?: boolean, options?: {}) => Promise<proto.WebMessageInfo>;
     newsletterCreate: (name: any, description: any) => Promise<{
         id: any;
-        owner: undefined;
+        owner: any;
         name: any;
         creation_time: number;
         description: any;
@@ -68,23 +340,27 @@ export function makeMessagesSocket(config: any): {
     newsletterSubscribers: (jid: any) => Promise<any>;
     newsletterSubscribed: () => Promise<any>;
     newsletterMetadata: (type: any, key: any) => Promise<any>;
-    newsletterFollow: (jid: any) => Promise<any>;
-    newsletterUnfollow: (jid: any) => Promise<any>;
-    newsletterMute: (jid: any) => Promise<any>;
-    newsletterUnmute: (jid: any) => Promise<any>;
+    newsletterFollow: (jid: any) => any;
+    newsletterUnfollow: (jid: any) => any;
+    newsletterMute: (jid: any) => any;
+    newsletterUnmute: (jid: any) => any;
     newsletterUpdateName: (jid: any, name: any) => Promise<any>;
     newsletterUpdateDescription: (jid: any, description: any) => Promise<any>;
     newsletterUpdatePicture: (jid: any, content: any) => Promise<any>;
     newsletterRemovePicture: (jid: any) => Promise<any>;
     newsletterReactMessage: (jid: any, serverId: any, reaction: any) => Promise<void>;
-    newsletterFetchMessages: (type: any, key: any, count: any, after: any, before: any) => Promise<any[]>;
+    newsletterFetchMessages: (jid: any, count: any, since: any, after: any) => Promise<{
+        [k: string]: any;
+    }[]>;
     subscribeNewsletterUpdates: (jid: any) => Promise<{
         duration: any;
-    } | null>;
+    }>;
     newsletterAdminCount: (jid: any) => Promise<any>;
     newsletterChangeOwner: (jid: any, newOwnerJid: any) => Promise<void>;
     newsletterDemote: (jid: any, userJid: any) => Promise<void>;
     newsletterDelete: (jid: any) => Promise<void>;
+    executeWMexQuery: Function;
+    newsletterProbeQueryIds: Function;
     groupQuery: (jid: any, type: any, content: any) => Promise<any>;
     groupMetadata: (jid: any) => Promise<{
         id: any;
@@ -97,16 +373,16 @@ export function makeMessagesSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -115,7 +391,7 @@ export function makeMessagesSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupCreate: (subject: any, participants: any) => Promise<{
         id: any;
@@ -128,16 +404,16 @@ export function makeMessagesSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -146,7 +422,7 @@ export function makeMessagesSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupLeave: (id: any) => Promise<void>;
     groupUpdateSubject: (jid: any, subject: any) => Promise<void>;
@@ -170,16 +446,16 @@ export function makeMessagesSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -188,7 +464,7 @@ export function makeMessagesSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupToggleEphemeral: (jid: any, ephemeralExpiration: any) => Promise<void>;
     groupSettingUpdate: (jid: any, setting: any) => Promise<void>;
@@ -196,8 +472,8 @@ export function makeMessagesSocket(config: any): {
     groupJoinApprovalMode: (jid: any, mode: any) => Promise<void>;
     groupFetchAllParticipating: () => Promise<{}>;
     findUserId: (pnLid: any) => Promise<{
-        lid: undefined;
-        phoneNumber: undefined;
+        lid: any;
+        phoneNumber: any;
     }>;
     serverProps: {
         privacyTokenOn1to1: boolean;
@@ -255,7 +531,7 @@ export function makeMessagesSocket(config: any): {
             timezone: any;
             business_config: any;
         };
-    } | undefined>;
+    }>;
     resyncAppState: (...args: any[]) => Promise<any>;
     chatModify: (mod: any, jid: any) => Promise<void>;
     cleanDirtyBits: (type: any, fromTimestamp: any) => Promise<void>;
@@ -310,7 +586,8 @@ export function makeMessagesSocket(config: any): {
     digestKeyBundle: () => Promise<void>;
     rotateSignedPreKey: () => Promise<void>;
     requestPairingCode: (phoneNumber: any, customPairingCode: any) => Promise<any>;
-    updateServerTimeOffset: ({ attrs }: {
+    updateServerTimeOffset: (options: {
+        [key: string]: any;
         attrs: any;
     }) => void;
     sendUnifiedSession: () => Promise<void>;
@@ -321,9 +598,11 @@ export function makeMessagesSocket(config: any): {
     onWhatsApp: (...phoneNumber: any[]) => Promise<any>;
     fetchAccountReachoutTimelock: () => Promise<{
         isActive: boolean;
-        timeEnforcementEnds: Date | undefined;
+        timeEnforcementEnds: Date;
         enforcementType: any;
     }>;
     fetchNewChatMessageCap: () => Promise<any>;
 };
 import { MessageRetryManager } from '../Utils/index.js';
+import { captureUnifiedResponse } from '../Utils/rich-messages.js';
+import { proto } from '../../WAProto/index.js';

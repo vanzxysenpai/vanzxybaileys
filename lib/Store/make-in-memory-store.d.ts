@@ -44,7 +44,7 @@ export function makeInMemoryStore(config?: {}): {
     mostRecentMessage: (jid: any) => Promise<any>;
     fetchImageUrl: (jid: any, sock: any) => Promise<any>;
     fetchGroupMetadata: (jid: any, sock: any) => Promise<any>;
-    fetchMessageReceipts: ({ remoteJid, id }: {
+    fetchMessageReceipts: (opts1: { [key: string]: any; 
         remoteJid: any;
         id: any;
     }) => Promise<any>;

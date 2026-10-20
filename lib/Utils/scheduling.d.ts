@@ -1,42 +1,59 @@
-import type { WAMessage, AnyMessageContent } from '../Types/index.js';
-export interface SchedulerOptions {
-    maxQueue?: number;
-    checkInterval?: number;
-    onSent?: (scheduled: ScheduledMessage, message?: WAMessage) => void;
-    onFailed?: (scheduled: ScheduledMessage, error: Error) => void;
-}
-export type ScheduledMessageStatus = 'pending' | 'sent' | 'failed' | 'cancelled';
-export interface RepeatOptions {
-    repeatIntervalMs?: number;
-    maxRepeats?: number;
-}
-export interface ScheduledMessage {
-    id: string;
-    jid: string;
-    content: AnyMessageContent;
-    scheduledTime: Date;
-    createdAt: Date;
-    status: ScheduledMessageStatus;
-    messageId?: string;
-    error?: string;
-    repeatIntervalMs?: number;
-    maxRepeats?: number;
-    repeatCount?: number;
-}
-export declare class MessageScheduler {
-    private queue;
-    private timer;
-    private sendMessage;
-    private options;
-    constructor(sendMessage: (jid: string, content: AnyMessageContent) => Promise<WAMessage | undefined>, options?: SchedulerOptions);
-    schedule(jid: string, content: AnyMessageContent, scheduledTime: Date, repeatOptions?: RepeatOptions): ScheduledMessage;
-    scheduleDelay(jid: string, content: AnyMessageContent, delayMs: number, repeatOptions?: RepeatOptions): ScheduledMessage;
-    cancel(id: string): boolean;
-    cancelForJid(jid: string): number;
-    getPending(): ScheduledMessage[];
-    get(id: string): ScheduledMessage | undefined;
+/**
+ * Vanz@Add --- ported from Bail-master addons/scheduling.ts + message-scheduler.ts.
+ * Bail-master shipped these as two separate, overlapping schedulers (one class-based
+ * with polling, one function-based with setTimeout + repeat support). Merged here into
+ * a single class-based scheduler so multiple independent instances can be bound to
+ * different sendMessage functions (e.g. multi-session bots), while keeping the
+ * repeat-interval/maxRepeats feature from the function-based version.
+ */
+export class MessageScheduler {
+    constructor(sendMessage: any, options?: {});
+    queue: Map<any, any>;
+    timer: any;
+    sendMessage: any;
+    options: {
+        maxQueue: any;
+        checkInterval: any;
+        onSent: any;
+        onFailed: any;
+    };
+    generateId(): string;
+    /**
+     * Schedule a message for a specific Date. Pass `repeatIntervalMs` to
+     * re-queue the job that many ms after each send (optionally capped by
+     * `maxRepeats`).
+     */
+    schedule(jid: any, content: any, scheduledTime: any, repeatOptions: any): {
+        id: string;
+        jid: any;
+        content: any;
+        scheduledTime: any;
+        createdAt: Date;
+        status: string;
+        repeatIntervalMs: any;
+        maxRepeats: any;
+        repeatCount: number;
+    };
+    scheduleDelay(jid: any, content: any, delayMs: any, repeatOptions: any): {
+        id: string;
+        jid: any;
+        content: any;
+        scheduledTime: any;
+        createdAt: Date;
+        status: string;
+        repeatIntervalMs: any;
+        maxRepeats: any;
+        repeatCount: number;
+    };
+    cancel(id: any): boolean;
+    cancelForJid(jid: any): number;
+    getPending(): any[];
+    get(id: any): any;
     clearAll(): number;
+    processQueue(): Promise<void>;
+    ensureTimerRunning(): void;
+    stopTimer(): void;
     stop(): void;
     start(): void;
 }
-export declare const createMessageScheduler: (sendMessage: (jid: string, content: AnyMessageContent) => Promise<WAMessage | undefined>, options?: SchedulerOptions) => MessageScheduler;
+export function createMessageScheduler(sendMessage: any, options: any): MessageScheduler;

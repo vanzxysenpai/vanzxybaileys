@@ -4,6 +4,6 @@ export class USyncUsernameProtocol {
         tag: string;
         attrs: {};
     };
-    getUserElement(user: any): null;
+    getUserElement(user: any): any;
     parser(node: any): any;
 }

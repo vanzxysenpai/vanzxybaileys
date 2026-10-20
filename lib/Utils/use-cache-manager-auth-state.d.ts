@@ -1,13 +1,22 @@
-import type { AuthenticationState } from '../Types/index.js';
-/** Minimal interface compatible with any cache-manager v5 store (Redis, Memcached, keyv, @cacheable/node-cache, etc). */
-export type CacheManagerStore = {
-    set(key: string, value: string, ttl?: number): Promise<void>;
-    get(key: string): Promise<string | undefined | null>;
-    del(key: string): Promise<void>;
-    keys(pattern?: string): Promise<string[]>;
-};
-export declare const useCacheManagerAuthState: (store: CacheManagerStore, sessionKey: string) => Promise<{
-    state: AuthenticationState;
-    saveCreds: () => Promise<void>;
+export function useCacheManagerAuthState(store: any, sessionKey: any): Promise<{
     clearState: () => Promise<void>;
+    state: {
+        creds: any;
+        keys: {
+            get: (type: any, ids: any) => Promise<{}>;
+            set: (data: any) => Promise<void>;
+        };
+    };
+    saveCreds: () => Promise<void>;
+}>;
+export function makeCacheManagerAuthState(store: any, sessionKey: any): Promise<{
+    clearState: () => Promise<void>;
+    state: {
+        creds: any;
+        keys: {
+            get: (type: any, ids: any) => Promise<{}>;
+            set: (data: any) => Promise<void>;
+        };
+    };
+    saveCreds: () => Promise<void>;
 }>;

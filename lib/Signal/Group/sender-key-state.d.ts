@@ -9,7 +9,7 @@ export class SenderKeyState {
     getSigningKeyPrivate(): any;
     hasSenderMessageKey(iteration: any): any;
     addSenderMessageKey(senderMessageKey: any): void;
-    removeSenderMessageKey(iteration: any): SenderMessageKey | null;
+    removeSenderMessageKey(iteration: any): SenderMessageKey;
     getStructure(): any;
 }
 import { SenderChainKey } from './sender-chain-key.js';

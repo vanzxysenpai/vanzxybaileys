@@ -1,8 +1,7 @@
 export function makeNewsletterSocket(config: any): {
-    executeWMexQuery: (variables: any, queryId: any, dataPath: any) => Promise<any>;
     newsletterCreate: (name: any, description: any) => Promise<{
         id: any;
-        owner: undefined;
+        owner: any;
         name: any;
         creation_time: number;
         description: any;
@@ -19,23 +18,28 @@ export function makeNewsletterSocket(config: any): {
     newsletterSubscribers: (jid: any) => Promise<any>;
     newsletterSubscribed: () => Promise<any>;
     newsletterMetadata: (type: any, key: any) => Promise<any>;
-    newsletterFollow: (jid: any) => Promise<any>;
-    newsletterUnfollow: (jid: any) => Promise<any>;
-    newsletterMute: (jid: any) => Promise<any>;
-    newsletterUnmute: (jid: any) => Promise<any>;
+    newsletterFollow: (jid: any) => any;
+    newsletterUnfollow: (jid: any) => any;
+    newsletterMute: (jid: any) => any;
+    newsletterUnmute: (jid: any) => any;
     newsletterUpdateName: (jid: any, name: any) => Promise<any>;
     newsletterUpdateDescription: (jid: any, description: any) => Promise<any>;
     newsletterUpdatePicture: (jid: any, content: any) => Promise<any>;
     newsletterRemovePicture: (jid: any) => Promise<any>;
     newsletterReactMessage: (jid: any, serverId: any, reaction: any) => Promise<void>;
-    newsletterFetchMessages: (jid: string, count: number, since?: number, after?: number) => Promise<any[]>;
+    newsletterFetchMessages: (jid: any, count: any, since: any, after: any) => Promise<{
+        [k: string]: any;
+    }[]>;
     subscribeNewsletterUpdates: (jid: any) => Promise<{
         duration: any;
-    } | null>;
+    }>;
     newsletterAdminCount: (jid: any) => Promise<any>;
     newsletterChangeOwner: (jid: any, newOwnerJid: any) => Promise<void>;
     newsletterDemote: (jid: any, userJid: any) => Promise<void>;
     newsletterDelete: (jid: any) => Promise<void>;
+    executeWMexQuery: Function;
+    /** Diagnostic: which candidate GraphQL doc ids answer right now (read-only ops). Pass a readable newsletter jid for full coverage. */
+    newsletterProbeQueryIds: Function;
     groupQuery: (jid: any, type: any, content: any) => Promise<any>;
     groupMetadata: (jid: any) => Promise<{
         id: any;
@@ -48,16 +52,16 @@ export function makeNewsletterSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -66,7 +70,7 @@ export function makeNewsletterSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupCreate: (subject: any, participants: any) => Promise<{
         id: any;
@@ -79,16 +83,16 @@ export function makeNewsletterSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -97,7 +101,7 @@ export function makeNewsletterSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupLeave: (id: any) => Promise<void>;
     groupUpdateSubject: (jid: any, subject: any) => Promise<void>;
@@ -121,16 +125,16 @@ export function makeNewsletterSocket(config: any): {
         subjectTime: number;
         size: any;
         creation: number;
-        owner: string | undefined;
-        ownerPn: string | undefined;
+        owner: string;
+        ownerPn: string;
         ownerUsername: any;
         owner_country_code: any;
         desc: any;
         descId: any;
-        descOwner: string | undefined;
-        descOwnerPn: string | undefined;
+        descOwner: string;
+        descOwnerPn: string;
         descOwnerUsername: any;
-        descTime: number | undefined;
+        descTime: number;
         linkedParent: any;
         restrict: boolean;
         announce: boolean;
@@ -139,7 +143,7 @@ export function makeNewsletterSocket(config: any): {
         joinApprovalMode: boolean;
         memberAddMode: boolean;
         participants: any;
-        ephemeralDuration: number | undefined;
+        ephemeralDuration: number;
     }>;
     groupToggleEphemeral: (jid: any, ephemeralExpiration: any) => Promise<void>;
     groupSettingUpdate: (jid: any, setting: any) => Promise<void>;
@@ -147,8 +151,8 @@ export function makeNewsletterSocket(config: any): {
     groupJoinApprovalMode: (jid: any, mode: any) => Promise<void>;
     groupFetchAllParticipating: () => Promise<{}>;
     findUserId: (pnLid: any) => Promise<{
-        lid: undefined;
-        phoneNumber: undefined;
+        lid: any;
+        phoneNumber: any;
     }>;
     serverProps: {
         privacyTokenOn1to1: boolean;
@@ -207,7 +211,7 @@ export function makeNewsletterSocket(config: any): {
             timezone: any;
             business_config: any;
         };
-    } | undefined>;
+    }>;
     resyncAppState: (...args: any[]) => Promise<any>;
     chatModify: (mod: any, jid: any) => Promise<void>;
     cleanDirtyBits: (type: any, fromTimestamp: any) => Promise<void>;
@@ -257,12 +261,13 @@ export function makeNewsletterSocket(config: any): {
     end: (error: any) => Promise<void>;
     registerSocketEndHandler: (handler: any) => void;
     onUnexpectedError: (err: any, msg: any) => void;
-    uploadPreKeys: (count?: number) => Promise<void>;
+    uploadPreKeys: (count?: 5) => Promise<void>;
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     digestKeyBundle: () => Promise<void>;
     rotateSignedPreKey: () => Promise<void>;
     requestPairingCode: (phoneNumber: any, customPairingCode: any) => Promise<any>;
-    updateServerTimeOffset: ({ attrs }: {
+    updateServerTimeOffset: (options: {
+        [key: string]: any;
         attrs: any;
     }) => void;
     sendUnifiedSession: () => Promise<void>;
@@ -273,7 +278,7 @@ export function makeNewsletterSocket(config: any): {
     onWhatsApp: (...phoneNumber: any[]) => Promise<any>;
     fetchAccountReachoutTimelock: () => Promise<{
         isActive: boolean;
-        timeEnforcementEnds: Date | undefined;
+        timeEnforcementEnds: Date;
         enforcementType: any;
     }>;
     fetchNewChatMessageCap: () => Promise<any>;

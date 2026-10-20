@@ -4,6 +4,8 @@ export function useSqliteAuthState(opts: any): Promise<{
         keys: {
             get: (type: any, ids: any) => Promise<{}>;
             set: (data: any) => Promise<void>;
+            list(type: any): AsyncGenerator<any[], void, unknown>;
+            listIds(type: any): AsyncGenerator<any, void, unknown>;
         };
     };
     saveCreds: () => Promise<void>;

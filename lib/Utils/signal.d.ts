@@ -5,7 +5,7 @@ export function createSignalIdentity(wid: any, accountSignatureKey: any): {
     };
     identifierKey: any;
 };
-export function getPreKeys({ get }: {
+export function getPreKeys(opts1: { [key: string]: any; 
     get: any;
 }, min: any, limit: any): Promise<any>;
 export function generateOrGetPreKeys(creds: any, range: any): {
@@ -32,18 +32,18 @@ export function xmppPreKey(pair: any, id: any): {
     }[];
 };
 export function extractE2ESessionFromRetryReceipt(receipt: any): {
-    registrationId: number | undefined;
+    registrationId: number;
     identityKey: any;
     signedPreKey: {
-        keyId: number | undefined;
+        keyId: number;
         publicKey: any;
         signature: any;
     };
     preKey: {
-        keyId: number | undefined;
+        keyId: number;
         publicKey: any;
-    } | undefined;
-} | null;
+    };
+};
 export function parseAndInjectE2ESessions(node: any, repository: any): Promise<void>;
 export function extractDeviceJids(result: any, myJid: any, myLid: any, excludeZeroDevices: any): {
     user: any;
@@ -51,7 +51,7 @@ export function extractDeviceJids(result: any, myJid: any, myLid: any, excludeZe
     domainType: any;
     server: any;
 }[];
-export function getNextPreKeys({ creds, keys }: {
+export function getNextPreKeys(opts2: { [key: string]: any; 
     creds: any;
     keys: any;
 }, count: any): Promise<{
@@ -71,7 +71,7 @@ export function getNextPreKeysNode(state: any, count: any): Promise<{
         attrs: {
             xmlns: string;
             type: string;
-            to: string;
+            to: "@s.whatsapp.net";
         };
         content: {
             tag: string;

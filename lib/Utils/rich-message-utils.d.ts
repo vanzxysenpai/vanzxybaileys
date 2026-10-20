@@ -17,6 +17,8 @@ export function prepareRichResponseMessage(content: any): {
                     signature: Uint8Array<ArrayBuffer>;
                 }[];
             };
+        } | {
+            verificationMetadata?: undefined;
         };
     };
     botForwardedMessage: {
@@ -27,7 +29,9 @@ export function prepareRichResponseMessage(content: any): {
 };
 export function botMetadataSignature(): Uint8Array<ArrayBuffer>;
 export function botMetadataCertificate(length?: number): Uint8Array<ArrayBuffer>;
-export function wrapToBotForwardedMessage(richResponseMessage: any): {
+export function wrapToBotForwardedMessage(richResponseMessage: any, opts1?: { [key: string]: any; 
+    verification?: boolean;
+}): {
     messageContextInfo: {
         botMetadata: {
             verificationMetadata: {
@@ -38,6 +42,8 @@ export function wrapToBotForwardedMessage(richResponseMessage: any): {
                     signature: Uint8Array<ArrayBuffer>;
                 }[];
             };
+        } | {
+            verificationMetadata?: undefined;
         };
     };
     botForwardedMessage: {

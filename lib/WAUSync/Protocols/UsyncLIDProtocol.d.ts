@@ -9,6 +9,6 @@ export class USyncLIDProtocol {
         attrs: {
             jid: any;
         };
-    } | null;
+    };
     parser(node: any): any;
 }

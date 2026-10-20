@@ -5,4 +5,5 @@ export namespace Browsers {
     function windows(browser: any): any[];
     function appropriate(browser: any): any[];
 }
-export function getPlatformId(browser: any): any;
+export function getPlatformId(browser: any): string;
+export function isAndroidBrowser(browser: any): boolean;

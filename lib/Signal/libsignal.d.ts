@@ -1,40 +1,44 @@
 export function makeLibSignalRepository(auth: any, logger: any, pnToLIDFunc: any): {
-    decryptGroupMessage({ group, authorJid, msg }: {
+    decryptGroupMessage(opts1: { [key: string]: any; 
         group: any;
         authorJid: any;
         msg: any;
     }): any;
-    processSenderKeyDistributionMessage({ item, authorJid }: {
+    processSenderKeyDistributionMessage(opts2: { [key: string]: any; 
         item: any;
         authorJid: any;
     }): Promise<any>;
-    decryptMessage({ jid, type, ciphertext }: {
+    decryptMessage(opts3: { [key: string]: any; 
         jid: any;
         type: any;
         ciphertext: any;
     }): Promise<any>;
-    encryptMessage({ jid, data }: {
+    encryptMessage(opts4: { [key: string]: any; 
         jid: any;
         data: any;
     }): Promise<any>;
-    encryptGroupMessage({ group, meId, data }: {
+    encryptGroupMessage(opts5: { [key: string]: any; 
         group: any;
         meId: any;
         data: any;
     }): Promise<any>;
-    getSenderKeyDistributionMessage({ group, meId }: {
+    getSenderKeyDistributionMessage(opts6: { [key: string]: any; 
         group: any;
         meId: any;
     }): Promise<any>;
-    hasSenderKey({ group, meId }: {
+    hasSenderKey(opts7: { [key: string]: any; 
         group: any;
         meId: any;
     }): Promise<boolean>;
+    resetSenderKey(opts8: { [key: string]: any; 
+        group: any;
+        meId: any;
+    }): Promise<any>;
     getSessionInfo(jid: any): Promise<{
         baseKey: Uint8Array<any>;
         registrationId: number;
-    } | null>;
-    injectE2ESession({ jid, session }: {
+    }>;
+    injectE2ESession(opts9: { [key: string]: any; 
         jid: any;
         session: any;
     }): Promise<any>;

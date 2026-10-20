@@ -4,7 +4,7 @@ export class SenderKeyRecord {
     MAX_STATES: number;
     senderKeyStates: SenderKeyState[];
     isEmpty(): boolean;
-    getSenderKeyState(keyId: any): SenderKeyState | undefined;
+    getSenderKeyState(keyId: any): SenderKeyState;
     addSenderKeyState(id: any, iteration: any, chainKey: any, signatureKey: any): void;
     setSenderKeyState(id: any, iteration: any, chainKey: any, keyPair: any): void;
     serialize(): any[];
