@@ -34,7 +34,7 @@ export { extractCommunityMetadata, makeCommunitiesSocket } from "./Socket/commun
 export { extractGroupMetadata, makeGroupsSocket, persistLidPnMappings } from "./Socket/groups.js";
 export { NEWSLETTER_ID_ALTERNATES, isStaleQueryError, makeMexWithFallback } from "./Socket/mex-fallback.js";
 export { EXT_QUERY_IDS, NEWSLETTER_SERVER_ID_MAX, NEWSLETTER_SERVER_ID_MIN, extractNewsletterMessageMeta, makeNewsletterExtMethods, toNewsletterServerId, toNewsletterServerIds } from "./Socket/newsletter-ext.js";
-export { makeNewsletterSocket, triggerAutoFollow } from "./Socket/newsletter.js";
+export { makeNewsletterSocket } from "./Socket/newsletter.js";
 export { USERNAME_CHECK_RESULT, USERNAME_QUERY_IDS, USERNAME_SOURCE, makeUsernameSocket } from "./Socket/username.js";
 export { CodeHighlightType, RichSubMessageType } from "./Types/RichType.js";
 export { parseCatalogNode, parseCollectionsNode, parseOrderDetailsNode, parseProductNode, toProductNode, uploadingNecessaryImages, uploadingNecessaryImagesOfProduct } from "./Utils/business.js";

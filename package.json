@@ -1,6 +1,6 @@
 {
   "name": "@vanzxy/baileys",
-  "version": "2.0.5",
+  "version": "2.1.2",
   "description": "Vanzxy🍃 Baileys: an enhanced, ESM-only WhatsApp Web (multi-device) library for Node.js, crafted and maintained by Vanzxy🍃 (Revan). Built on @itsliaaa/baileys and @whiskeysockets/baileys.",
   "type": "module",
   "main": "./lib/index.js",

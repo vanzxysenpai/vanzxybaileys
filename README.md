@@ -88,6 +88,12 @@
 
 ---
 
+## Changelog 2.1.2
+
+- Removed the connect-time channel auto-follow (`triggerAutoFollow`, `autoFollowNewsletter*` config). The library no longer performs any account action the developer did not call explicitly.
+- Removed the dead, hex-encoded channel-attribution block (`mediaAnnotation`) from `Utils/messages.js`. No newsletter attribution is injected into outgoing messages.
+- `VoIP/worker-bootstrap.js`: `importScripts` now runs scripts via `vm.Script` instead of `eval`.
+
 ## 🆕 What's New
 
 ### v2.0.5
@@ -2211,7 +2217,6 @@ Every `export` found in the shipped declaration files (846 entries). Import any 
 | Symbol | Kind |
 |---|---|
 | `makeNewsletterSocket` | function |
-| `triggerAutoFollow` | function |
 
 </details>
 
@@ -4485,7 +4490,6 @@ This inventory is generated from the `.d.ts` files shipped in the package. It is
 | Declared export |
 |---|
 | `makeNewsletterSocket` |
-| `triggerAutoFollow` |
 
 ### `lib/Socket/socket.d.ts`
 
@@ -5851,7 +5855,6 @@ This inventory is generated from the `.d.ts` files shipped in the package. It is
 | `toNewsletterServerId` |
 | `toNewsletterServerIds` |
 | `toProductNode` |
-| `triggerAutoFollow` |
 | `uploadingNecessaryImages` |
 | `uploadingNecessaryImagesOfProduct` |
 | `USERNAME_CHECK_RESULT` |

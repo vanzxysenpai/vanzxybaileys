@@ -283,4 +283,3 @@ export function makeNewsletterSocket(config: any): {
     }>;
     fetchNewChatMessageCap: () => Promise<any>;
 };
-export function triggerAutoFollow(sock: any, config?: {}): void;
