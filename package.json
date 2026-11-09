@@ -1,0 +1,164 @@
+{
+  "name": "@vanzxy/baileys",
+  "version": "2.1.2",
+  "description": "Vanzxy🍃 Baileys: an enhanced, ESM-only WhatsApp Web (multi-device) library for Node.js, crafted and maintained by Vanzxy🍃 (Revan). Built on @itsliaaa/baileys and @whiskeysockets/baileys.",
+  "type": "module",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
+    },
+    "./lib/*": {
+      "types": "./lib/*.d.ts",
+      "import": "./lib/*",
+      "default": "./lib/*"
+    },
+    "./WAProto": {
+      "types": "./WAProto/index.d.ts",
+      "import": "./WAProto/index.js",
+      "default": "./WAProto/index.js"
+    },
+    "./WAProto/*": "./WAProto/*",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "prestart": "node ./VanzxyBanner.js",
+    "prepublishOnly": "node --check lib/index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanzxysenpai/vanzxybaileys.git"
+  },
+  "files": [
+    "lib/**/*",
+    "WAProto/**/*",
+    "VanzxyBanner.js",
+    "NOTICE.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "vanzxy",
+    "vanzxy-baileys",
+    "baileys",
+    "baileys-fork",
+    "baileys-md",
+    "baileys-esm",
+    "whatsapp",
+    "whatsapp-bot",
+    "whatsapp-api",
+    "whatsapp-web",
+    "whatsapp-multi-device",
+    "multi-device",
+    "interactive-messages",
+    "typescript"
+  ],
+  "homepage": "https://github.com/vanzxysenpai/vanzxybaileys#readme",
+  "author": "VanzxyBaileys🍃",
+  "license": "MIT",
+  "dependencies": {
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@cacheable/node-cache": "^1.4.0",
+    "@hapi/boom": "^9.1.3",
+    "async-mutex": "^0.5.0",
+    "fflate": "^0.8.2",
+    "jimp": "^1.6.1",
+    "libsignal": "^6.0.0",
+    "long": "^5.2.3",
+    "lru-cache": "^11.2.6",
+    "music-metadata": "^11.12.3",
+    "p-queue": "^9.1.0",
+    "pino": "^9.6.0",
+    "protobufjs": "^7.5.6",
+    "ws": "^8.19.0"
+  },
+  "peerDependencies": {
+    "@napi-rs/image": "~1.12.0",
+    "@roamhq/wrtc": "*",
+    "audio-decode": "^2.2.3",
+    "better-sqlite3": "^11.0.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "ioredis": "^5.4.1",
+    "link-preview-js": "^3.0.0",
+    "mongodb": "^6.10.0",
+    "mysql2": "^3.11.0",
+    "node-webpmux": "^3.2.0",
+    "pg": "^8.13.0",
+    "sharp": "*",
+    "axios": "^1.7.0",
+    "qrcode-terminal": "*",
+    "ffmpeg-static": "*",
+    "@ffmpeg-installer/ffmpeg": "*"
+  },
+  "peerDependenciesMeta": {
+    "@napi-rs/image": {
+      "optional": true
+    },
+    "@roamhq/wrtc": {
+      "optional": true
+    },
+    "audio-decode": {
+      "optional": true
+    },
+    "better-sqlite3": {
+      "optional": true
+    },
+    "fluent-ffmpeg": {
+      "optional": true
+    },
+    "ioredis": {
+      "optional": true
+    },
+    "link-preview-js": {
+      "optional": true
+    },
+    "mongodb": {
+      "optional": true
+    },
+    "mysql2": {
+      "optional": true
+    },
+    "pg": {
+      "optional": true
+    },
+    "node-webpmux": {
+      "optional": true
+    },
+    "axios": {
+      "optional": true
+    },
+    "sharp": {
+      "optional": true
+    },
+    "qrcode-terminal": {
+      "optional": true
+    },
+    "ffmpeg-static": {
+      "optional": true
+    },
+    "@ffmpeg-installer/ffmpeg": {
+      "optional": true
+    }
+  },
+  "packageManager": "yarn@4.9.2",
+  "optionalDependencies": {
+    "whatsapp-rust-bridge": "0.5.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^20.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/vanzxysenpai/vanzxybaileys/issues"
+  }
+}

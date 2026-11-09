@@ -1,0 +1,58 @@
+export function makeLibSignalRepository(auth: any, logger: any, pnToLIDFunc: any): {
+    decryptGroupMessage(opts1: { [key: string]: any; 
+        group: any;
+        authorJid: any;
+        msg: any;
+    }): any;
+    processSenderKeyDistributionMessage(opts2: { [key: string]: any; 
+        item: any;
+        authorJid: any;
+    }): Promise<any>;
+    decryptMessage(opts3: { [key: string]: any; 
+        jid: any;
+        type: any;
+        ciphertext: any;
+    }): Promise<any>;
+    encryptMessage(opts4: { [key: string]: any; 
+        jid: any;
+        data: any;
+    }): Promise<any>;
+    encryptGroupMessage(opts5: { [key: string]: any; 
+        group: any;
+        meId: any;
+        data: any;
+    }): Promise<any>;
+    getSenderKeyDistributionMessage(opts6: { [key: string]: any; 
+        group: any;
+        meId: any;
+    }): Promise<any>;
+    hasSenderKey(opts7: { [key: string]: any; 
+        group: any;
+        meId: any;
+    }): Promise<boolean>;
+    resetSenderKey(opts8: { [key: string]: any; 
+        group: any;
+        meId: any;
+    }): Promise<any>;
+    getSessionInfo(jid: any): Promise<{
+        baseKey: Uint8Array<any>;
+        registrationId: number;
+    }>;
+    injectE2ESession(opts9: { [key: string]: any; 
+        jid: any;
+        session: any;
+    }): Promise<any>;
+    jidToSignalProtocolAddress(jid: any): any;
+    lidMapping: LIDMappingStore;
+    validateSession(jid: any): Promise<{
+        exists: boolean;
+        reason: string;
+    } | {
+        exists: boolean;
+        reason?: undefined;
+    }>;
+    deleteSession(jids: any): Promise<any>;
+    close(): void;
+    migrateSession(fromJid: any, toJid: any): Promise<any>;
+};
+import { LIDMappingStore } from './lid-mapping.js';
